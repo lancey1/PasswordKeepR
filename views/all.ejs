@@ -1,0 +1,25 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+      <article>
+        <dl>
+            <dt>webtype</dt>
+            <dd>...from database</dd>
+            <dt>website_url</dt>
+            <dd>...from database</dd>
+            <dt>website_password</dt>
+            <dd>...from database</dd>
+        </dl>
+        <a href="/edit/list_id">EDIT</a>
+        <hr>
+
+        <form action="/delete/list_id" method="post">
+            <button>DELETE</button>
+        </form>
+        
+      </article>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

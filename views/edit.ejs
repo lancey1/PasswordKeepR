@@ -1,0 +1,21 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+        <form action="/new" method="post">
+            <label for="web_type">web_type</label>
+            <select name="web_type" id="web_type">
+                <option value="entertainment">entertainment</option>
+                <option value="social">social</option>
+                <option value="work">work</option>
+                <option value="finance">finance</option>
+            </select>
+            <label for="website_url">website_url</label>
+            <input type="url" name="website_url" id="website_url">
+            <label for="password">password</label>
+            <input type="password">
+        </form>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

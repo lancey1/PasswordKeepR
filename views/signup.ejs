@@ -1,0 +1,19 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+        <form action="/signup" method="post">
+            <label for="organization">organization</label>
+            <input type="text" name="organization" id="organization" placeholder="separate words by space">
+            <label for="username">username</label>
+            <input type="text" name="username" id="username">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password">
+            <label for="confirm_password">confirm_password</label>
+            <input type="password" name="confirm_password" id="confirm_password">
+            <button>Submit</button>
+        </form>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

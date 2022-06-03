@@ -1,0 +1,52 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+        <form action="/new" method="post">
+          <p class="input_sec">
+            <label for="web_type">web_type</label>
+            <select name="web_type" id="web_type">
+                <option value="entertainment">entertainment</option>
+                <option value="social">social</option>
+                <option value="work">work</option>
+                <option value="finance">finance</option>
+                <option value="shopping">shopping</option>
+                <option value="health">health</option>
+                <option value="pets">pets</option>
+                <option value="pets">home</option>
+                <option value="pets">study</option>
+            </select>
+          </p>
+          <p class="input_sec">
+            <label for="website_url">website_url</label>
+            <input type="url" name="website_url" id="website_url">
+          </p>
+          <p class="input_sec">
+            <fieldset>
+              <legend>password requirements</legend>
+                <label for="passwordlength">password length</label>
+                <input type="number" name="passwordlength" id="passwordlength" step="1">
+                <input type="checkbox" name="lowercase" id="lowercase">
+                <label for="lowercase">contain lowercase?</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">lowercase</label>
+                </div>
+                <input type="checkbox" name="uppercase" id="uppercase">
+                <label for="uppercase">contain uppercase?</label>
+                <input type="checkbox" name="number" id="number">
+                <label for="number">contain numbers?</label>
+                <input type="checkbox" name="specialchar" id="specialchar">
+                <label for="specialchar">contain special char?</label>
+            </fieldset>
+          </p>
+          <div>
+            <button type="reset">Clear</button>
+            <button>Submit</button>
+          </div>
+            
+        </form>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>
