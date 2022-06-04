@@ -22,7 +22,6 @@ CREATE TABLE website_url_details (
   website_type VARCHAR(52) NOT NULL
 );
 
-
 CREATE TABLE website_passwords (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,

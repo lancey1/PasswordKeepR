@@ -66,8 +66,8 @@ const NEDRoutes = require('./routes/new_edit_delete');
 app.get("/", (req, res) => {
   res.render("main");
 });
-app.use(usersRoutes(pool));
-app.use(NEDRoutes(pool));
+app.use(usersRoutes);
+app.use(NEDRoutes);
 
 
 

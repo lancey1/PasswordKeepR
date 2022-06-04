@@ -1,5 +1,36 @@
 const pool = require('../lib/db');
 
+const insertUser = async function (username, organization, email, password) {
+    let organization_id;
+    try {
+        const { rows } = await pool.query(`
+        SELECT id FROM organizations WHERE name = $1`, [organization]);
+        organization_id = rows[0].id;
+    } catch (error) {
+        throw error;
+    }
+
+    if (!organization_id) {
+        try {
+            let { rows } = await pool.query(`
+                        INSERT INTO organizations (name) 
+                        VALUES ($1) RETURNING *;`, [organization]);
+            organization_id = rows[0].id;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    console.log('in between qs', organization_id);
+    try {
+        await pool.query(`
+        INSERT INTO users (name, email, password, organization_id) 
+        VALUES ($1,$2,$3, $4);`, [username, email, password, organization_id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
     try {
         const { rows } = await pool.query(`
@@ -33,6 +64,7 @@ const queryInfoByUserId = async function (userid) {
 }
 
 module.exports = {
+    insertUser,
     queryInfoByWebTypeAndUserId,
     queryInfoByUserId,
 }
