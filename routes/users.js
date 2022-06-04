@@ -8,7 +8,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { insertUser, queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
+const { insertUser, queryUserInfoByEmail, queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
+const { signupCheck } = require('../helper/user')
 
 
 
@@ -27,11 +28,18 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-  
-  const { organization, username, email, password, confirm_password } = req.body;
-  //todo Validate user's input, such as password_confirm and if email exisits.
 
-  //todo If user email already exists, need to inform user with a warining.
+  const { organization, username, email, password, confirm_password } = req.body;
+  //* Validate user's inputs.
+  try {
+    let msg = await signupCheck(email, password, confirm_password);
+    console.log(msg);
+    if (msg) {
+      return res.render('signup', { warning: msg, organization: organization, email:email, username:username });
+    }
+  } catch (error) {
+    throw error['message'];
+  }
 
   //* Hash user password then store it.
   let hashehPassword = await bcrypt.hash(password, 12);

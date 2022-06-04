@@ -33,6 +33,18 @@ const insertUser = async function (username, organization, email, password) {
     }
 }
 
+const queryUserInfoByEmail = async function (email) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT * 
+        FROM users
+        WHERE email = $1`, [email]);
+        return rows[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
 const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
     try {
         const { rows } = await pool.query(`
@@ -51,7 +63,8 @@ const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
 
 const queryInfoByUserId = async function (userid) {
     try {
-        const { rows } = await pool.query(`SELECT website_url_details.id as website_id , 
+        const { rows } = await pool.query(`
+        SELECT website_url_details.id as website_id , 
         website_url_details.url as website_url, 
         website_url_details.website_type as website_type 
         FROM website_url_details
@@ -61,12 +74,13 @@ const queryInfoByUserId = async function (userid) {
         console.log(rows);
         return rows;
     } catch (error) {
-        throw error['message'];
+        throw error;
     }
 }
 
 module.exports = {
     insertUser,
+    queryUserInfoByEmail,
     queryInfoByWebTypeAndUserId,
     queryInfoByUserId,
 }
