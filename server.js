@@ -8,11 +8,11 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieSession = require('cookie-session');
-const db = require('./lib/db');
+const pool = require('./lib/db');
 
 
 // PG database pool/connection setup
-db.connect();
+// pool.connect();
 
 
 // const { Pool } = require("pg");
@@ -66,8 +66,8 @@ const NEDRoutes = require('./routes/new_edit_delete');
 app.get("/", (req, res) => {
   res.render("main");
 });
-app.use(usersRoutes(db));
-app.use(NEDRoutes(db));
+app.use(usersRoutes(pool));
+app.use(NEDRoutes(pool));
 
 
 

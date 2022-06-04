@@ -8,6 +8,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const { queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
 
 
 module.exports = (db) => {
@@ -45,8 +46,15 @@ module.exports = (db) => {
 
   })
 
-  router.get('/main', (req, res) => {
-    res.render('main');
+  router.get('/main', async (req, res) => {
+    try {
+      const result = await queryInfoByUserId(2);
+      res.send(result);
+    } catch (error) {
+      
+      throw error['message'];
+    }
+    // res.render('main');
   })
 
 
