@@ -3,25 +3,27 @@ const pool = require('../lib/db');
 const insertUser = async function (username, organization, email, password) {
     let organization_id;
     try {
+        //* Check if organization already exists based on name.
         const { rows } = await pool.query(`
         SELECT id FROM organizations WHERE name = $1`, [organization]);
-        organization_id = rows[0].id;
+        if (rows.length !== 0) {
+            organization_id = rows[0]['id'];
+        }
+        //* If organization not in the db yet, insert the organization.
+        if (!rows || rows.length === 0) {
+            try {
+                let { rows } = await pool.query(`
+                        INSERT INTO organizations (name) 
+                        VALUES ($1) RETURNING *;`, [organization]);
+                organization_id = rows[0]['id'];
+            } catch (error) {
+                throw error;
+            }
+        }
     } catch (error) {
         throw error;
     }
-
-    if (!organization_id) {
-        try {
-            let { rows } = await pool.query(`
-                        INSERT INTO organizations (name) 
-                        VALUES ($1) RETURNING *;`, [organization]);
-            organization_id = rows[0].id;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    console.log('in between qs', organization_id);
+    //* Now we habe orgganization_id, we can insert user.
     try {
         await pool.query(`
         INSERT INTO users (name, email, password, organization_id) 

@@ -28,6 +28,9 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res) => {
   const { organization, username, email, password, confirm_password } = req.body;
+  //todo Validate user's input, such as password_confirm and if email exisits.
+
+  //* Hash user password then store it.
   let hashehPassword = await bcrypt.hash(password, 12);
   try {
     await insertUser(username, organization, email, hashehPassword);
