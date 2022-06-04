@@ -20,5 +20,15 @@ p.input_sec{
 fieldset {
     display: flex;
     flex-direction: column;
-    
+    .form-check{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+    }
+    .form-check-label{
+        margin: 0;
+        align-items: center;
+        margin-inline-start: 2rem;
+    }
 }
