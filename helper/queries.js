@@ -25,6 +25,7 @@ const queryInfoByUserId = async function (userid) {
         JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
         JOIN users ON website_passwords.user_id = users.id
         WHERE users.id = $1;`, [userid]);
+        console.log(rows);
         return rows;
     } catch (error) {
         throw error['message'];

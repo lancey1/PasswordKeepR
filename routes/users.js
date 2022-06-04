@@ -48,7 +48,7 @@ module.exports = (db) => {
 
   router.get('/main', async (req, res) => {
     try {
-      const result = queryInfoByUserId(2);
+      const result = await queryInfoByUserId(2);
       res.send(result);
     } catch (error) {
       
