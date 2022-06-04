@@ -27,11 +27,15 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
+  
   const { organization, username, email, password, confirm_password } = req.body;
   //todo Validate user's input, such as password_confirm and if email exisits.
 
+  //todo If user email already exists, need to inform user with a warining.
+
   //* Hash user password then store it.
   let hashehPassword = await bcrypt.hash(password, 12);
+  req.session.email = email;
   try {
     await insertUser(username, organization, email, hashehPassword);
     return res.redirect('/main');
@@ -42,7 +46,8 @@ router.post('/signup', async (req, res) => {
 })
 
 router.post('/logout', (req, res) => {
-
+  req.session = null;
+  res.redirect('/');
 })
 
 router.get('/main', async (req, res) => {
