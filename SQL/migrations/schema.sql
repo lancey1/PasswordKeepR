@@ -26,6 +26,7 @@ CREATE TABLE website_passwords (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   website_url_id INTEGER NOT NULL REFERENCES website_url_details(id) ON DELETE CASCADE,
+  username VARCHAR(255) NOT NULL,
   generated_password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
