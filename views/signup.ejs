@@ -4,13 +4,24 @@
     <main>
         <form action="/signup" method="post">
             <label for="organization">organization</label>
-            <input type="text" name="organization" id="organization" placeholder="separate words by space">
+            <input type="text" name="organization" id="organization" placeholder="separate words by space" value="<%=locals.organization%>">
+            
             <label for="username">username</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value="<%=locals.username%>">
+            <label for="email">email</label>
+            <input type="email" name="email" id="email" value="<%=locals.email%>">
+
             <label for="password">password</label>
             <input type="password" name="password" id="password">
+
             <label for="confirm_password">confirm_password</label>
             <input type="password" name="confirm_password" id="confirm_password">
+            
+            <% if(locals.warning) {%> 
+              <hr>
+              <p class="err-msg"><%=warning%></p>
+            <% } %> 
+            <hr>
             <button>Submit</button>
         </form>
     </main>

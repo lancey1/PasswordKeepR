@@ -4,11 +4,15 @@
     <main>
         
         <form action="/login" method="post">
-            
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+            <label for="email">email</label>
+            <input type="email" name="email" id="email" value="<%= locals.email %>">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
+            <% if(locals.warning) {%> 
+              <hr>
+              <p class="err-msg"><%=warning%></p>
+            <% } %> 
+            <hr>
             <button>Submit</button>
         </form>
     </main>
