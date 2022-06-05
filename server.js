@@ -4,6 +4,7 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
+const checkSessionMiddleware = require('./middlewares/checkSessionMiddleware')
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -66,6 +67,7 @@ const NEDRoutes = require('./routes/new_edit_delete');
 app.get("/", (req, res) => {
   res.render("main");
 });
+app.use(checkSessionMiddleware);
 app.use(usersRoutes);
 app.use(NEDRoutes);
 
