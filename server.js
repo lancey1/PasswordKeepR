@@ -48,8 +48,6 @@ app.get("/", (req, res) => {
 app.use(usersRoutes);
 app.use(NEDRoutes);
 
-
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
