@@ -1,0 +1,12 @@
+.webtype-card {
+    display: flex;
+    justify-content: space-between;
+}
+.webtype-card-count{
+    background-color: gray;
+}
+.webtype-card-img {
+  width: 10rem;
+  height: 5rem;
+  object-fit: cover;
+}

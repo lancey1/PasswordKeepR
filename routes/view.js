@@ -15,4 +15,8 @@ router.get('/main', async (req, res) => {
     }
 })
 
+router.get('/main/:type', async (req, res) => {
+    res.send(req.params.type);
+})
+
 module.exports = router;
