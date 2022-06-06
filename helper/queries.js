@@ -52,7 +52,7 @@ const queryWebIdByURL = async function (websiteURL) {
         FROM website_url_details
         WHERE url = $1
         `, [websiteURL]);
-        console.log(rows, 'rows')
+        console.log('In queryWebIdByURL webId ARR is ',rows);
         if (rows.length !== 0) { return rows[0]['id']; }
         else return;
     } catch (error) {
@@ -65,12 +65,13 @@ const insertWebURL = async function (websiteURL, webType) {
         const { rows } = await pool.query(`
         INSERT INTO website_url_details (url, website_type) 
         VALUES ($1, $2) RETURNING *;`, [websiteURL, webType]);
-        console.log(rows[0]['id']);
+        console.log('In insertWebUrl webId is ', rows[0]['id']);
         return rows[0]['id'];
     } catch (error) {
         throw error;
     }
 }
+
 
 const insertWebUserPswd = async function (userid, webid, username, generatedPassword) {
     try {
@@ -88,7 +89,10 @@ const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
         const { rows } = await pool.query(`
         SELECT website_url_details.id as website_id , 
         website_url_details.url as website_url, 
-        website_url_details.website_type as website_type 
+        website_url_details.website_type as website_type,
+        website_passwords.username AS username,
+        website_passwords.generated_password AS password,
+        website_passwords.created_at AS created_at
         FROM website_url_details
         JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
         JOIN users ON website_passwords.user_id = users.id
@@ -99,17 +103,15 @@ const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
     }
 };
 
-const queryInfoByUserId = async function (userid) {
+const queryWebTypeByUserId = async function (userId) {
     try {
         const { rows } = await pool.query(`
-        SELECT website_url_details.id as website_id , 
-        website_url_details.url as website_url, 
-        website_url_details.website_type as website_type 
+        SELECT count(*) ,  website_url_details.website_type AS website_type
         FROM website_url_details
         JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
         JOIN users ON website_passwords.user_id = users.id
-        WHERE users.id = $1;`, [userid]);
-        console.log(rows);
+        WHERE users.id = $1
+        GROUP BY website_url_details.website_type;`, [userId]);
         return rows;
     } catch (error) {
         throw error;
@@ -123,5 +125,5 @@ module.exports = {
     insertWebURL,
     insertWebUserPswd,
     queryInfoByWebTypeAndUserId,
-    queryInfoByUserId,
+    queryWebTypeByUserId,
 }

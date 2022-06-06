@@ -43,7 +43,7 @@ app.use(cookieSession({
 app.use(checkSessionMiddleware);
 
 app.get("/", (req, res) => {
-  res.render("main");
+  res.redirect("/main");
 });
 
 app.use(usersRoutes);

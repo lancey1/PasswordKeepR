@@ -8,7 +8,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { insertUser, queryUserInfoByEmail, queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
+const { insertUser } = require('../helper/queries');
 const { signupCheck, loginCheck } = require('../helper/user')
 
 router.get('/login', (req, res) => {
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
     throw "login post:" + error['message'];
   }
   req.session.email = email;
-  return res.render('main');
+  return res.redirect('/main');
 })
 
 router.get('/signup', (req, res) => {

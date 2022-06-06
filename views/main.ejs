@@ -4,10 +4,19 @@
     <main>
     <section id="web-categories">
         <article>
-            
+          
+            <% if(!locals.webtype_arr){%>
+              <p>create some</p>
+            <% }else{ %>  
+            <% for(const key of webtype_arr) { %> 
+              <%- include('./partials/_webtype-card',{webtype_item:key})  %> 
+            <% } }%> 
+
             <img src="/images/leftcat.JPG" alt="">
             <h3>Pets</h3>
             
+
+
         </article>
 
     </section>
