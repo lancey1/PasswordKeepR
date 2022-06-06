@@ -3,16 +3,20 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-family: barlow, monospace;
 
   a {
     color: black;
   }
+
   ul {
-      flex-wrap: wrap;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
+    margin-bottom: 0px;
+
     li {
       padding-inline-start: 1rem;
       padding-inline-end: 1rem;
