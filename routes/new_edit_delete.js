@@ -12,11 +12,6 @@ const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
 var CryptoJS = require("crypto-js");
 
-
-router.get('/list', (req, res) => {
-    res.render('list')
-})
-
 router.get('/new', (req, res) => {
     res.render('new')
 })

@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
     throw "login post:" + error['message'];
   }
   req.session.email = email;
-  return res.redirect('/main');
+  return res.redirect('/home');
 })
 
 router.get('/signup', (req, res) => {
@@ -53,7 +53,7 @@ router.post('/signup', async (req, res) => {
   req.session.email = email;
   try {
     await insertUser(username, organization, email, hashehPassword);
-    return res.redirect('/main');
+    return res.redirect('/home');
   } catch (error) {
     throw error['message'];
   }

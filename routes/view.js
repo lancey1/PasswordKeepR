@@ -3,14 +3,14 @@ const router = express.Router();
 var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
 
-router.get('/main', async (req, res) => {
+router.get('/home', async (req, res) => {
     let userId = res.locals.user['id'];
     try {
         let result = await fetchWebTypes(userId);
         console.log('in /main ', result);
         if (!result) result = null;
 
-        return res.render('main', { webtype_arr: result });
+        return res.render('home', { webtype_arr: result });
     } catch (error) {
         throw error;
     }
@@ -41,6 +41,10 @@ router.get('/info/:id', async (req, res) => {
     } catch (error) {
         throw error['message'];
     }
+})
+
+router.get('/list', (req, res) => {
+    res.render('list')
 })
 
 module.exports = router;
