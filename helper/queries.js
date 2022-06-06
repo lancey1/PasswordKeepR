@@ -45,6 +45,44 @@ const queryUserInfoByEmail = async function (email) {
     }
 }
 
+const queryWebIdByURL = async function (websiteURL) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT * 
+        FROM website_url_details
+        WHERE url = $1
+        `, [websiteURL]);
+        console.log(rows, 'rows')
+        if (rows.length !== 0) { return rows[0]['id']; }
+        else return;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const insertWebURL = async function (websiteURL, webType) {
+    try {
+        const { rows } = await pool.query(`
+        INSERT INTO website_url_details (url, website_type) 
+        VALUES ($1, $2) RETURNING *;`, [websiteURL, webType]);
+        console.log(rows[0]['id']);
+        return rows[0]['id'];
+    } catch (error) {
+        throw error;
+    }
+}
+
+const insertWebUserPswd = async function (userid, webid, username, generatedPassword) {
+    try {
+        const { rows } = await pool.query(`
+        INSERT INTO website_passwords (user_id, website_url_id, username,
+            generated_password) 
+        VALUES ($1,$2,$3,$4);`, [userid, webid, username, generatedPassword]);
+    } catch (error) {
+        throw error['message'];
+    }
+}
+
 const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
     try {
         const { rows } = await pool.query(`
@@ -81,6 +119,9 @@ const queryInfoByUserId = async function (userid) {
 module.exports = {
     insertUser,
     queryUserInfoByEmail,
+    queryWebIdByURL,
+    insertWebURL,
+    insertWebUserPswd,
     queryInfoByWebTypeAndUserId,
     queryInfoByUserId,
 }

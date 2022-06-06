@@ -8,22 +8,30 @@
 const express = require('express');
 const { render } = require('express/lib/response');
 const router = express.Router();
-const helperFunc = require('../helper/func')
+const { passwordGenerator } = require('../helper/func');
+const { storeInstance } = require('../helper/create');
 
 
-router.get('/all', (req, res) => {
-    res.render('all')
+router.get('/list', (req, res) => {
+    res.render('list')
 })
 
 router.get('/new', (req, res) => {
     res.render('new')
 })
 
-router.post('/new', (req, res) => {
-    let { passwordlength, lowercase, uppercase, specialchar, number } = req.body;
-    let password = helperFunc.passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
-    res.send(password);
-    // res.send(JSON.stringify(req.body));
+router.post('/new', async (req, res) => {
+    let { web_type, website_url, user_email, passwordlength, lowercase, uppercase, specialchar, number } = req.body;
+    let userId = res.locals.user.id;
+    let password = passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
+    try {
+        const result = await storeInstance(website_url, web_type, userId, user_email, password);
+        if (result == 'success') {
+            return res.render('list')
+        }
+    } catch (error) {
+        throw error;
+    }
 })
 
 router.get('/edit/:id', (req, res) => {
