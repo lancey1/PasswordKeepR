@@ -42,9 +42,12 @@ app.use(cookieSession({
 //* Check every incoming request's session.
 app.use(checkSessionMiddleware);
 
-app.get("/", (req, res) => {
-  res.redirect("/home");
-});
+app.get("/",(req,res)=>{
+  if(res.locals.isAuth){
+    return res.redirect('/home');
+  }
+  return res.render('main');
+})
 
 app.use(usersRoutes);
 app.use(NEDRoutes);
