@@ -1,2 +1,2 @@
 SELECT id,name,email FROM users
-WHERE organization_id = 2;
+WHERE organization_id = 1;

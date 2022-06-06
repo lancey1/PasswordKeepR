@@ -4,12 +4,13 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { insertUser, queryUserInfoByEmail, queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
 const { signupCheck, loginCheck } = require('../helper/user')
+
 
 router.get('/login', (req, res) => {
   res.render('login');
@@ -53,7 +54,24 @@ router.post('/signup', async (req, res) => {
   req.session.email = email;
   try {
     await insertUser(username, organization, email, hashehPassword);
-    return res.redirect('/main');
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+      to: email,
+      from: 'lanceyu1010@gmail.com', // Sender address ill just use my spam email lol
+      subject: 'Welcome to PasswordKeepR',
+      text: `Welcome to PasswordKeepR! ${username}`,
+      html: `<p>Hello ${username}.
+              Welcome to PasswordKeepR </p>`
+    };
+    sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent')
+    })
+    .catch((error) => {
+      console.log(error.response.body)
+    });
   } catch (error) {
     throw error['message'];
   }
