@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { fetchWebTypes } = require('../helper/fetchWebDetails');
+var CryptoJS = require("crypto-js");
+const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
 
 router.get('/main', async (req, res) => {
     let userId = res.locals.user['id'];
     try {
         let result = await fetchWebTypes(userId);
-        console.log(result, ' in /main');
+        console.log('in /main ', result);
         if (!result) result = null;
 
         return res.render('main', { webtype_arr: result });
@@ -16,7 +17,30 @@ router.get('/main', async (req, res) => {
 })
 
 router.get('/main/:type', async (req, res) => {
-    res.send(req.params.type);
+    let userId = res.locals.user['id'];
+    try {
+        //! fetch webURLS 
+        const result = await fetchWebURLsByType(userId, req.params.type);
+        return res.render('list_webURL', { webURL_arr: result, web_type: req.params.type });
+    } catch (error) {
+        throw error['message'];
+    }
+})
+
+router.get('/info/:id', async (req, res) => {
+    console.log('in gere')
+    let userId = res.locals.user['id'];
+    try {
+        const result = await fetchWebDetailsByWebId(userId, req.params.id);
+        for (const item of result) {
+            let bytes = CryptoJS.AES.decrypt(item['password'], process.env.SECRET_KEY);
+            item['password'] = bytes.toString(CryptoJS.enc.Utf8);
+        }
+        // return res.send(result);
+        return res.render('webURLInfo', { webinfo_arr: result });
+    } catch (error) {
+        throw error['message'];
+    }
 })
 
 module.exports = router;

@@ -1,0 +1,19 @@
+<section class="webinfo-detail">
+  <a href="<%=webinfo_item['website_id'] %>">
+    <p class="webinfo-card-type"><%= webinfo_item['website_url']%></p>
+  </a>
+
+  <div class="username-pswd-info">
+    <p class="username-pswd-info-username"><%= webinfo_item['username']%></p>
+    <p class="username-pswd-info-count"><%= webinfo_item['password']%></p>
+  </div>
+  <div class="actions">
+    <form action="/edit/<% webinfo_item['website_password_id']%>" method="get">
+        <button class="edit-btn">Edit</button>
+    </form>
+    <form action="/delete/<% webinfo_item['website_password_id']%>" method="post">
+        <button class="delete-btn">Delete</button>
+    </form>
+  </div>
+</section>
+<hr />

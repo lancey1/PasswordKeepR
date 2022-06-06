@@ -52,7 +52,7 @@ const queryWebIdByURL = async function (websiteURL) {
         FROM website_url_details
         WHERE url = $1
         `, [websiteURL]);
-        console.log('In queryWebIdByURL webId ARR is ',rows);
+        console.log('In queryWebIdByURL webId ARR is ', rows);
         if (rows.length !== 0) { return rows[0]['id']; }
         else return;
     } catch (error) {
@@ -72,7 +72,6 @@ const insertWebURL = async function (websiteURL, webType) {
     }
 }
 
-
 const insertWebUserPswd = async function (userid, webid, username, generatedPassword) {
     try {
         const { rows } = await pool.query(`
@@ -84,22 +83,23 @@ const insertWebUserPswd = async function (userid, webid, username, generatedPass
     }
 }
 
-const queryInfoByWebTypeAndUserId = async function (userid, webtype) {
+const queryInfoByWebIdAndUserId = async function (userid, webid) {
     try {
         const { rows } = await pool.query(`
         SELECT website_url_details.id as website_id , 
         website_url_details.url as website_url, 
         website_url_details.website_type as website_type,
+        website_passwords.id AS website_password_id,
         website_passwords.username AS username,
         website_passwords.generated_password AS password,
         website_passwords.created_at AS created_at
         FROM website_url_details
         JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
         JOIN users ON website_passwords.user_id = users.id
-        WHERE users.id = $1 AND website_type = $2;`, [userid, webtype])
+        WHERE users.id = $1 AND website_url_details.id = $2;`, [userid, webid])
         return rows;
     } catch (error) {
-        throw error['message'];
+        throw error;
     }
 };
 
@@ -116,6 +116,22 @@ const queryWebTypeByUserId = async function (userId) {
     } catch (error) {
         throw error;
     }
+};
+
+const queryWebURLsByUserIdWebType = async function (userId, webtype) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT DISTINCT(website_url_details.url) AS url, 
+        website_url_details.id as id
+        FROM website_url_details
+        JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
+        JOIN users ON website_passwords.user_id = users.id
+        WHERE users.id = $1 AND website_url_details.website_type = $2 
+        `, [userId, webtype]);
+        return rows;
+    } catch (error) {
+        throw error
+    }
 }
 
 module.exports = {
@@ -124,6 +140,7 @@ module.exports = {
     queryWebIdByURL,
     insertWebURL,
     insertWebUserPswd,
-    queryInfoByWebTypeAndUserId,
+    queryInfoByWebIdAndUserId,
     queryWebTypeByUserId,
+    queryWebURLsByUserIdWebType
 }
