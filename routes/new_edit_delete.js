@@ -10,6 +10,7 @@ const { render } = require('express/lib/response');
 const router = express.Router();
 const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
+var CryptoJS = require("crypto-js");
 
 
 router.get('/list', (req, res) => {
@@ -24,8 +25,11 @@ router.post('/new', async (req, res) => {
     let { web_type, website_url, user_email, passwordlength, lowercase, uppercase, specialchar, number } = req.body;
     let userId = res.locals.user.id;
     let password = passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
+    console.log(password);
+    var ciphertext = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString();
+    console.log(ciphertext);
     try {
-        const result = await storeInstance(website_url, web_type, userId, user_email, password);
+        const result = await storeInstance(website_url, web_type, userId, user_email, ciphertext);
         if (result == 'success') {
             return res.render('list')
         }
