@@ -4,12 +4,13 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { insertUser } = require('../helper/queries');
 const { signupCheck, loginCheck } = require('../helper/user')
+
 
 router.get('/login', (req, res) => {
   res.render('login');
