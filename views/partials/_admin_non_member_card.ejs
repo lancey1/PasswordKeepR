@@ -1,0 +1,14 @@
+<li class="non-member-card">
+  <div>
+    <span><%=nonMember.name %></span>
+    <span><%=nonMember.email %></span>
+  </div>
+  <div>
+    <form action="/manage/ignore/<%=nonMember.id%>" method="post">
+      <button>Ignore</button>
+    </form>
+    <form action="/manage/accept/<%=nonMember.id%>" method="post">
+      <button>Accept</button>
+    </form>
+  </div>
+</li>

@@ -14,6 +14,30 @@ const queryAdminByOrganization = async function (organization) {
     }
 }
 
+const queryMembersByOrganizationId = async function (organizationId) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT * 
+        FROM users
+        WHERE permission = 'member' AND organization_id = $1;`, [organizationId]);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const queryUsersByOrganizationId = async function (organizationId) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT * 
+        FROM users
+        WHERE permission = 'user' AND organization_id = $1;`, [organizationId]);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const insertUser = async function (username, organization, email, password, permission = 'user') {
     let organization_id;
     try {
@@ -150,6 +174,8 @@ const queryWebURLsByUserIdWebType = async function (userId, webtype) {
 
 module.exports = {
     queryAdminByOrganization,
+    queryMembersByOrganizationId,
+    queryUsersByOrganizationId,
     insertUser,
     queryUserInfoByEmail,
     queryWebIdByURL,
