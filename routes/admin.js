@@ -22,7 +22,6 @@ router.get('/manage', async (req, res) => {
     } catch (error) {
         throw error['message'];
     }
-    //? display current members and nonMember users
     return res.render('admin', { members: members_arr, nonMembers: nonMembers_arr });
 })
 
