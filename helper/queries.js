@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const pool = require("../lib/db");
 
 const queryAdminByOrganization = async function (organization) {
@@ -10,6 +11,23 @@ const queryAdminByOrganization = async function (organization) {
         ON users.organization_id = organizations.id
         WHERE organizations.name = $1 AND permission = 'admin';`,
             [organization]
+        );
+        return rows[0];
+    } catch (error) {
+        throw error;
+    }
+};
+
+const queryAdminByOrganizationId = async function (organization_id) {
+    try {
+        const { rows } = await pool.query(
+            `
+        SELECT users.id AS id, organizations.name AS name
+        FROM users
+        JOIN organizations
+        ON users.organization_id = organizations.id
+        WHERE organizations.id = $1 AND permission = 'admin';`,
+            [organization_id]
         );
         return rows[0];
     } catch (error) {
@@ -259,6 +277,40 @@ const ignoreUserPermission = async function (user_id) {
     }
 }
 
+const fetchAllURLForUser = async function (user_id) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT DISTINCT(website_url_details.url) AS url,
+        website_url_details.id as id
+        FROM website_url_details
+        JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
+        JOIN users ON website_passwords.user_id = users.id
+        WHERE users.id = $1`, [user_id]);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const fetchAllURLFromOrg = async function (organization_id) {
+    let admin;
+    let r;
+    try {
+        r = await queryAdminByOrganizationId(organization_id);
+        admin = r['id'];
+        console.log(admin, '================')
+    } catch (error) {
+        throw error;
+    };
+    try {
+        const result = await fetchAllURLForUser(admin);
+        result.orgName = r['name'];
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     queryAdminByOrganization,
     queryMembersByOrganizationId,
@@ -274,5 +326,6 @@ module.exports = {
     alterWebUserPswd,
     grantUserPermission,
     deleteUserPermission,
-    ignoreUserPermission
+    ignoreUserPermission,
+    fetchAllURLFromOrg
 };

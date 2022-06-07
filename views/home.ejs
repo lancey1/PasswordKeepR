@@ -4,7 +4,14 @@
     <main>
     <section id="web-categories">
         <article>
-          
+
+          <a href="/org">
+              <div>
+                <h2 class="webtype-card-type"><%=orgResult.orgName %> </h2>
+              </div>
+            <hr />
+          </a> 
+
             <% if(!locals.webtype_arr){%>
               <p>create some</p>
             <% }else{ %>  
