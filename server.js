@@ -53,6 +53,10 @@ app.use(usersRoutes);
 app.use(NEDRoutes);
 app.use(websitePasswordDetails);
 
+app.use((req, res) => {
+  res.status(404).render('404');
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
