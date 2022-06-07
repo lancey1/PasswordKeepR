@@ -8,7 +8,9 @@ const checkRequestSessionInfo = async (req, res, next) => {
             let user = await queryUserInfoByEmail(req.session['email']);
             console.log('in check session middleware ', user);
             res.locals.user = user;
+            res.locals.isAdmin = (user.permission === 'admin' ? true : false);
             res.locals.isAuth = true;
+            console.log(res.locals.isAdmin,' ', res.locals.isAuth);
         } catch (error) {
             throw error['message'];
         }
