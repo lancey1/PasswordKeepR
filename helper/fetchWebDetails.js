@@ -12,7 +12,6 @@ const fetchWebTypes = async function (userId) {
 const fetchWebDetailsByWebId = async function (userId, webtype) {
     try {
         const result = await queryInfoByWebIdAndUserId(userId, webtype);
-        console.log(result)
         return result;
     } catch (error) {
         throw error;

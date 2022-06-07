@@ -41,7 +41,6 @@ const queryUsersByOrganizationId = async function (organizationId) {
     }
 }
 
-
 const insertUser = async function (
     username,
     organization,
@@ -218,12 +217,12 @@ const queryWebURLsByUserIdWebType = async function (userId, webtype) {
     }
 };
 
-const alterWebUserPswd = async function (newpassword) {
+const alterWebUserPswd = async function (newPassword, website_password_id, user_id) {
     try {
-        const { rows } = await pool.query(
-            `UPDATE website_passwords SET generated_password = $1`,
-            [newpassword]
-        );
+        const {rows} = await pool.query(
+            `UPDATE website_passwords SET generated_password =$1
+            WHERE id = $2 AND user_id = $3 RETURNING *;`,
+            [newPassword, website_password_id, user_id]);
         return rows;
     } catch (error) {
         throw error;

@@ -32,11 +32,12 @@ router.get('/info/:id', async (req, res) => {
     let userId = res.locals.user['id'];
     try {
         const result = await fetchWebDetailsByWebId(userId, req.params.id);
+        // return res.send(result);
         for (const item of result) {
             let bytes = CryptoJS.AES.decrypt(item['password'], process.env.SECRET_KEY);
             item['password'] = bytes.toString(CryptoJS.enc.Utf8);
         }
-        // return res.send(result);
+        
         return res.render('webURLInfo', { webinfo_arr: result });
     } catch (error) {
         throw error['message'];

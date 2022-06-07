@@ -5,16 +5,22 @@
 
   <div class="username-pswd-info">
     <p class="username-pswd-info-username"><%= webinfo_item['username']%></p>
-    <p class="username-pswd-info-count"><%= webinfo_item['password']%></p>
+    <p class="username-pswd-info-password"><%= webinfo_item['password']%></p>
   </div>
+
   <div class="actions">
+
     <form method="post" action="/edit/<%=webinfo_item['website_password_id']%>">
       <input name="newpassword" type="text" placeholder="Submit Password changes here"/>
+      <input type="hidden" name="website_id" value="<%=webinfo_item['website_id']%>">
       <button class="edit-btn">Edit</button>
     </form>
+
     <form action="/delete/<%=webinfo_item['website_password_id']%>" method="post">
+      <input type="hidden" name="website_id" value="<%=webinfo_item['website_id']%>">
         <button class="delete-btn">Delete</button>
     </form>
+    
   </div>
 </section>
 <hr />

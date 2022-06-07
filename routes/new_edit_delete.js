@@ -11,6 +11,7 @@ const router = express.Router();
 const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
 const { alterWebUserPswd } = require('../helper/queries')
+const { fetchWebDetailsByWebId } = require('../helper/fetchWebDetails');
 var CryptoJS = require("crypto-js");
 
 router.get('/new', (req, res) => {
@@ -21,9 +22,9 @@ router.post('/new', async (req, res) => {
   let { web_type, website_url, user_email, passwordlength, lowercase, uppercase, specialchar, number } = req.body;
   let userId = res.locals.user.id;
   let password = passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
-  console.log(password);
+
   var ciphertext = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString();
-  console.log(ciphertext);
+
   try {
     const result = await storeInstance(website_url, web_type, userId, user_email, ciphertext);
     if (result == 'success') {
@@ -39,13 +40,20 @@ router.get('/edit/:id', (req, res) => {
 })
 
 router.post('/edit/:id', async (req, res) => {
-  const newPassword = req.body.newpassword;
+  const { newpassword, website_id } = req.body;
+  const user_id = res.locals.user['id'];
+  console.log(newpassword);
+  const website_password_id = req.params.id;
+  //? Encrypt user new password
+  var ciphertext = CryptoJS.AES.encrypt(newpassword, process.env.SECRET_KEY).toString();
+  console.log(ciphertext)
   try {
-    await alterWebUserPswd(newPassword);
-    return res.render('/home');
+    await alterWebUserPswd(ciphertext, website_password_id, user_id);
+    return res.redirect(`/info/${website_id}`);
   } catch (error) {
     throw error['message'];
   }
+  
 })
 
 router.post('/delete/:id', (req, res) => {
