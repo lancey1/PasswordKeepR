@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8070;
 const sassMiddleware = require("./lib/sass-middleware");
 const checkSessionMiddleware = require('./middlewares/checkSessionMiddleware')
 const express = require("express");
