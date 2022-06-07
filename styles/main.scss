@@ -11,13 +11,18 @@
   width: 10rem;
   height: 5rem;
   object-fit: cover;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(255, 255, 255) 40%, rgb(255, 255, 255) 100%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(255, 255, 255) 40%,
+    rgb(255, 255, 255) 100%,
+    transparent 100%
+  );
 }
 
 .body {
   background-color: aliceblue;
-  font-family: barlow,
-    monospace;
+  font-family: barlow, monospace;
 }
 
 .lockImage {
@@ -30,3 +35,4 @@
 .aboutUs {
   margin-top: 20px;
 }
+

@@ -1,0 +1,22 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+    <section id="org_webURL_list">
+        
+        <ul>
+
+            <% if(!locals.webURL_arr){%>
+              <p>Oh, Empty</p>
+            <% }else{ %>  
+            <% for(const key of webURL_arr) { %> 
+              <%- include('./partials/_webinfo_displayOnly_card',{webURL_item:key})  %> 
+            <% } }%> 
+
+        </ul>
+        
+    </section>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

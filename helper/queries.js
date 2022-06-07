@@ -310,6 +310,42 @@ const fetchAllURLFromOrg = async function (organization_id) {
         throw error;
     }
 }
+const fetchWebURLPswdByOrg = async function (userId) {
+    try {
+        const { rows } = await pool.query(
+            `
+        SELECT website_url_details.url AS url,
+        website_url_details.id AS id,
+        website_passwords.username AS username,
+        website_passwords.generated_password AS password
+        FROM website_url_details
+        JOIN website_passwords ON website_url_details.id = website_passwords.website_url_id
+        JOIN users ON website_passwords.user_id = users.id
+        WHERE users.id = $1;
+        `,
+            [userId]
+        );
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+};
+const fetchAllWebPswdFromOrg = async function (organization_id) {
+    let admin;
+    let r;
+    try {
+        r = await queryAdminByOrganizationId(organization_id);
+        admin = r['id'];
+    } catch (error) {
+        throw error;
+    };
+    try {
+        const result = await fetchWebURLPswdByOrg(admin);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
 
 module.exports = {
     queryAdminByOrganization,
@@ -327,5 +363,6 @@ module.exports = {
     grantUserPermission,
     deleteUserPermission,
     ignoreUserPermission,
-    fetchAllURLFromOrg
+    fetchAllURLFromOrg,
+    fetchAllWebPswdFromOrg
 };
