@@ -53,11 +53,8 @@ router.post('/signup', async (req, res) => {
   let hashehPassword = await bcrypt.hash(password, 12);
   req.session.email = email;
   try {
-<<<<<<< HEAD
     await insertUser(username, organization, email, hashehPassword, permissionType);
-    return res.redirect('/home');
-=======
-    await insertUser(username, organization, email, hashehPassword);
+    // //!
     // const sgMail = require('@sendgrid/mail');
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     // const msg = {
@@ -76,8 +73,8 @@ router.post('/signup', async (req, res) => {
     // .catch((error) => {
     //   console.log(error.response.body)
     // });
-    return res.redirect('/main');
->>>>>>> twillio-api
+    // //!
+    return res.redirect('/home');
   } catch (error) {
     throw error['message'];
   }
