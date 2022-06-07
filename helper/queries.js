@@ -219,7 +219,7 @@ const queryWebURLsByUserIdWebType = async function (userId, webtype) {
 
 const alterWebUserPswd = async function (newPassword, website_password_id, user_id) {
     try {
-        const {rows} = await pool.query(
+        const { rows } = await pool.query(
             `UPDATE website_passwords SET generated_password =$1
             WHERE id = $2 AND user_id = $3 RETURNING *;`,
             [newPassword, website_password_id, user_id]);
@@ -228,6 +228,36 @@ const alterWebUserPswd = async function (newPassword, website_password_id, user_
         throw error;
     }
 };
+
+const grantUserPermission = async function (user_id) {
+    try {
+        await pool.query(`
+        UPDATE users SET permission = 'member'
+        WHERE id = $1; `, [user_id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteUserPermission = async function (user_id) {
+    try {
+        await pool.query(`
+        UPDATE users SET permission = 'kicked' 
+        WHERE id = $1;`, [user_id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
+const ignoreUserPermission = async function (user_id) {
+    try {
+        await pool.query(`
+        UPDATE users SET permission = 'ignored' 
+        WHERE id = $1;`, [user_id]);
+    } catch (error) {
+        throw error;
+    }
+}
 
 module.exports = {
     queryAdminByOrganization,
@@ -242,4 +272,7 @@ module.exports = {
     queryWebTypeByUserId,
     queryWebURLsByUserIdWebType,
     alterWebUserPswd,
+    grantUserPermission,
+    deleteUserPermission,
+    ignoreUserPermission
 };
