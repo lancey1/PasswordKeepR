@@ -36,6 +36,7 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
+  console.log('???')
   const { organization, username, email, password, confirm_password } = req.body;
   let permissionType = req.body.permission_type ? 'admin' : 'user';
   //* Validate user's inputs.

@@ -6,11 +6,13 @@ const checkRequestSessionInfo = async (req, res, next) => {
         try {
             //* Fetch user info if user had a email cookie.
             let user = await queryUserInfoByEmail(req.session['email']);
-            // console.log('in check session middleware ', user);
-            res.locals.user = user;
-            res.locals.isAdmin = (user.permission === 'admin' ? true : false);
-            res.locals.isAuth = true;
-            // console.log(res.locals.isAdmin,' ', res.locals.isAuth);
+            console.log('in check session middleware ', user);
+            if (user) {
+                res.locals.user = user;
+                res.locals.isAdmin = (user.permission === 'admin' ? true : false);
+                res.locals.isAuth = true;
+            }
+            console.log(res.locals.isAdmin, ' ', res.locals.isAuth);
         } catch (error) {
             throw error['message'];
         }
