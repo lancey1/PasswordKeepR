@@ -1,6 +1,20 @@
 const pool = require('../lib/db');
 
-const insertUser = async function (username, organization, email, password) {
+const queryAdminByOrganization = async function (organization) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT * 
+        FROM users
+        JOIN organizations
+        ON users.organization_id = organizations.id
+        WHERE organizations.name = $1 AND permission = 'admin';`, [organization]);
+        return rows[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+const insertUser = async function (username, organization, email, password, permission = 'user') {
     let organization_id;
     try {
         //* Check if organization already exists based on name.
@@ -26,8 +40,8 @@ const insertUser = async function (username, organization, email, password) {
     //* Now we habe orgganization_id, we can insert user.
     try {
         await pool.query(`
-        INSERT INTO users (name, email, password, organization_id) 
-        VALUES ($1,$2,$3, $4);`, [username, email, password, organization_id]);
+        INSERT INTO users (name, email, password, organization_id, permission) 
+        VALUES ($1,$2,$3,$4,$5);`, [username, email, password, organization_id, permission]);
     } catch (error) {
         throw error;
     }
@@ -135,6 +149,7 @@ const queryWebURLsByUserIdWebType = async function (userId, webtype) {
 }
 
 module.exports = {
+    queryAdminByOrganization,
     insertUser,
     queryUserInfoByEmail,
     queryWebIdByURL,

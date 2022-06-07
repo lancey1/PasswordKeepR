@@ -36,11 +36,11 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-
   const { organization, username, email, password, confirm_password } = req.body;
+  let permissionType = req.body.permission_type ? 'admin' : 'user';
   //* Validate user's inputs.
   try {
-    let msg = await signupCheck(email, password, confirm_password);
+    let msg = await signupCheck(email, password, confirm_password, organization, permissionType);
     console.log(msg);
     if (msg) {
       return res.render('signup', { warning: msg, organization: organization, email: email, username: username });
@@ -53,12 +53,11 @@ router.post('/signup', async (req, res) => {
   let hashehPassword = await bcrypt.hash(password, 12);
   req.session.email = email;
   try {
-    await insertUser(username, organization, email, hashehPassword);
+    await insertUser(username, organization, email, hashehPassword, permissionType);
     return res.redirect('/home');
   } catch (error) {
     throw error['message'];
   }
-
 })
 
 router.post('/logout', (req, res) => {
