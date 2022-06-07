@@ -43,7 +43,10 @@ app.use(cookieSession({
 app.use(checkSessionMiddleware);
 
 app.get("/", (req, res) => {
-  res.redirect("/home");
+  if (res.locals.isAuth) {
+    return res.redirect("/home");
+  }
+  return res.render('main');
 });
 
 app.use(usersRoutes);
