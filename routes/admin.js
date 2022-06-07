@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { queryMembersByOrganizationId, queryUsersByOrganizationId } = require('../helper/queries');
 
+//? Protect admin routes, can only use these routes if a user is admin for that organization
 router.use((req, res, next) => {
     if (!res.locals.isAdmin) return res.status(401).render('401');
     next();
@@ -9,10 +10,8 @@ router.use((req, res, next) => {
 
 router.get('/manage', async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
-    console.log(organization_id);
     var members_arr;
     var nonMembers_arr;
-
     try {
         membesr_arr = await queryMembersByOrganizationId(organization_id);
     } catch (error) {
@@ -23,7 +22,7 @@ router.get('/manage', async (req, res) => {
     } catch (error) {
         throw error['message'];
     }
-    console.log(members_arr, '   ', nonMembers_arr);
+    //? display current members and nonMember users
     return res.render('admin', { members: members_arr, nonMembers: nonMembers_arr });
 })
 
