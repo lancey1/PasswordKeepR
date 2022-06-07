@@ -1,7 +1,18 @@
-const { queryUserInfoByEmail } = require('./queries');
+const { queryUserInfoByEmail, queryAdminByOrganization } = require('./queries');
 const bcrypt = require('bcryptjs');
 
-const signupCheck = async function (email, password, confirm_password) {
+const signupCheck = async function (email, password, confirm_password, organization, permission_type) {
+
+    if (permission_type === 'admin') {
+        try {
+            const user = await queryAdminByOrganization(organization);
+            console.log(user);
+            if (user) return 'Cannot register as admin.'
+        } catch (error) {
+            throw error;
+        }
+    }
+
     let user;
     if (!email || email.trim().length === 0) return 'email not vsalid';
     try {

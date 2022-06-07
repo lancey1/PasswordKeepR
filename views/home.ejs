@@ -1,0 +1,20 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <main>
+    <section id="web-categories">
+        <article>
+          
+            <% if(!locals.webtype_arr){%>
+              <p>create some</p>
+            <% }else{ %>  
+            <% for(const key of webtype_arr) { %> 
+              <%- include('./partials/_webtype-card',{webtype_item:key})  %> 
+            <% } }%> 
+            
+        </article>
+    </section>
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

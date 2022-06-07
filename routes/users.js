@@ -4,12 +4,13 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { insertUser, queryUserInfoByEmail, queryInfoByUserId, queryInfoByWebTypeAndUserId } = require('../helper/queries');
+const { insertUser } = require('../helper/queries');
 const { signupCheck, loginCheck } = require('../helper/user')
+
 
 router.get('/login', (req, res) => {
   res.render('login');
@@ -27,7 +28,7 @@ router.post('/login', async (req, res) => {
     throw "login post:" + error['message'];
   }
   req.session.email = email;
-  return res.render('main');
+  return res.redirect('/home');
 })
 
 router.get('/signup', (req, res) => {
@@ -35,11 +36,11 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-
   const { organization, username, email, password, confirm_password } = req.body;
+  let permissionType = req.body.permission_type ? 'admin' : 'user';
   //* Validate user's inputs.
   try {
-    let msg = await signupCheck(email, password, confirm_password);
+    let msg = await signupCheck(email, password, confirm_password, organization, permissionType);
     console.log(msg);
     if (msg) {
       return res.render('signup', { warning: msg, organization: organization, email: email, username: username });
@@ -52,22 +53,16 @@ router.post('/signup', async (req, res) => {
   let hashehPassword = await bcrypt.hash(password, 12);
   req.session.email = email;
   try {
-    await insertUser(username, organization, email, hashehPassword);
-    return res.redirect('/main');
+    await insertUser(username, organization, email, hashehPassword, permissionType);
+    return res.redirect('/home');
   } catch (error) {
     throw error['message'];
   }
-
 })
 
 router.post('/logout', (req, res) => {
   req.session = null;
   res.render('login');
 })
-
-router.get('/main', async (req, res) => {
-  res.render('main');
-})
-
 
 module.exports = router;

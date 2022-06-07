@@ -1,0 +1,17 @@
+<a href="/main/<%= webtype_item['website_type'] %>" class="webtype-card-a">
+  <section class="webtype-card">
+    <div>
+      <p class="webtype-card-type"><%= webtype_item['website_type']%></p>
+      <p class="webtype-card-count"><%= webtype_item['count']%></p>
+    </div>
+
+    <div>
+      <img
+        class="webtype-card-img"
+        src="/images/<%= webtype_item['website_type'] %>.jpg"
+        alt="<%= webtype_item['website_type'] %> image"
+      />
+    </div>
+  </section>
+  <hr />
+</a>

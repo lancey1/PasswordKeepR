@@ -1,0 +1,23 @@
+<%- include('./partials/_head') %> 
+  <body>
+    <%- include('./partials/_header') %> 
+    <h1>THIS IS ADMIN PAGE</h1>
+    <main>
+        <ul id="curr-member-list">
+            <% if(locals.members) {%> 
+            <% for(const item of members) {%>
+                <%- include('./partials/_admin_member_card.ejs',{member:item}) %> 
+            <% }} %>  
+        </ul>
+
+        <ul id="pending-member-list">
+            <% if(locals.nonMembers) {%> 
+            <% for(const item of nonMembers) {%>
+                <%- include('./partials/_admin_non_member_card.ejs',{nonMember:item}) %> 
+            <% }} %>  
+        </ul>
+
+    </main>
+    <%- include('./partials/_footer') %> 
+  </body>
+</html>

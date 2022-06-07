@@ -9,7 +9,7 @@ const storeInstance = async function (webURL, webType, userId, username, generat
         throw error;
     }
     //? If no webURL found in the database, insert new, return webId then set webId.
-    console.log(webId);
+    console.log('In create instance, webId is ',webId);
     if (!webId) {
         try {
             webId = await insertWebURL(webURL, webType);

@@ -13,7 +13,8 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  organization_id INTEGER NOT NULL REFERENCES organizations(id)  ON DELETE CASCADE
+  organization_id INTEGER NOT NULL REFERENCES organizations(id)  ON DELETE CASCADE,
+  permission VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE website_url_details (
