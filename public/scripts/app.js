@@ -1,23 +1,26 @@
-function copyButton() {
+$(document).ready(function () {
   /* Get the text field */
-  let copyText = document.getElementById("username-pswd-info-password");
+  $(".copybutton").mousedown(function () {
+    let copyText = $(this).val();
+    console.log(copyText);
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText);
+    // /* Alert the copied text */
+    console.log("Copied the text: " + copyText);
+    alert("Copied the text: " + copyText);
+  });
 
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  $(".username-pswd-info-password").mouseover(function () {
+    $(this)
+      .closest('form')
+      .find('.username-pswd-info-password')
+      .attr('type', 'text');
+  });
 
-  /* Copy the text inside the text field */
-  navigator.clipboard.writeText(copyText.value);
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-  }
-
-  function showPassword() {
-  let x = document.getElementById("username-pswd-info-password");
-  if (x.type === "password") {
-  x.type = "text";
-  } else {
-  x.type = "password";
-  }
-}
+  $(".username-pswd-info-password").mouseout(function () {
+    $(this)
+      .closest('form')
+      .find('.username-pswd-info-password')
+      .attr('type', 'password');
+  });
+});
