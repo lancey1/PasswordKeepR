@@ -24,3 +24,21 @@ nav {
     }
   }
 }
+
+@media (max-width:1274px) {
+  .header-list {
+    flex-wrap: nowrap;
+
+  }
+}
+
+@media (max-width:996px) {
+  .header-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: 40%;
+
+  }
+}
