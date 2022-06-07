@@ -12,7 +12,6 @@ router.get('/manage', async (req, res) => {
     console.log(organization_id);
     var members_arr;
     var nonMembers_arr;
-
     try {
         membesr_arr = await queryMembersByOrganizationId(organization_id);
     } catch (error) {
@@ -23,7 +22,6 @@ router.get('/manage', async (req, res) => {
     } catch (error) {
         throw error['message'];
     }
-    console.log(members_arr, '   ', nonMembers_arr);
     return res.render('admin', { members: members_arr, nonMembers: nonMembers_arr });
 })
 
