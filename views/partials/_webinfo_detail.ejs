@@ -5,11 +5,9 @@
 
   <div class="username-pswd-info">
     <p class="username-pswd-info-username"><%= webinfo_item['username']%></p>
-    <form>
-    <input type="password" class="username-pswd-info-password" value="<%=webinfo_item['password']%>" readonly>
-    <button class="copybutton" type="button" value="<%=webinfo_item['password']%>"> Copy Password</button>
-    </form>
-
+    <input readonly type="password" class="username-pswd-info-password" id="username-pswd-info-password" value="<%=webinfo_item['password']%>">
+    <input type="checkbox" onclick= "showPassword()" > Show Password</button>
+    <button type="button" onclick= "copyButton()" > Copy Password</button>
   </div>
 
   <div class="actions">
