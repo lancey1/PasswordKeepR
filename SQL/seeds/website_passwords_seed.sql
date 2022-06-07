@@ -1,8 +1,3 @@
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (1, 14, 26, 'labber1', 'ZGiP7j7d3N', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (2, 12, 38, 'labber2', 'RVGAKhkavP', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (3, 8, 36, 'labber3', 'jBW2rWYAmC', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (4, 20, 37, 'labber4', 'DQ9jHcSbqDA', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (5, 2, 36, 'labber5', 'NRtouuMiG', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (6, 20, 6, 'labber6', '4wmiNwBa', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (7, 5, 35, 'labber7', 'Oat0MkI', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (8, 14, 16, 'labb8r', 'A3WM0I', '2022-06-03 03:14:07' );
@@ -14,7 +9,6 @@ INSERT INTO website_passwords (id, user_id, website_url_id, website_username, ge
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (14, 7, 29, 'labber14', 'UDYmFFuWp', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (15, 17, 29, 'labber15', 'pT0dYK', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (16, 8, 24, 'labber16', 'qEasVRPazZL', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (17, 19, 36, 'labber1', 'riPCh5pgD', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (18, 11, 20, 'labber2', 'v7Fi7c', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (19, 16, 10, 'labber3', 'D6qDJtuuo3D', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (20, 9, 9, 'labber4', 'oMsrTpZwl', '2022-06-03 03:14:07' );
@@ -33,7 +27,6 @@ INSERT INTO website_passwords (id, user_id, website_url_id, website_username, ge
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (33, 6, 9, 'labber18', 'iuLFXf0pz', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (34, 4, 11, 'labber1', 'V4hY5HthDway', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (35, 16, 5, 'labber1', 'YLDnsf5', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (36, 20, 1, 'labber1', 'RO5231z3', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (37, 12, 39, 'labber9', 'cvOzuhrDl5D4', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (38, 11, 21, 'labber8', 'RonSzWoGWye', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (39, 5, 9, 'labbe8r', 'eWzjyxIto4n', '2022-06-03 03:14:07' );
@@ -42,7 +35,7 @@ INSERT INTO website_passwords (id, user_id, website_url_id, website_username, ge
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (42, 11, 1, 'labber5', 'LzzJRW', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (43, 3, 16, 'labber8', 'Ydem8hkY', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (44, 4, 15, 'labber7', 'd7nihU0jM7f', '2022-06-03 03:14:07' );
-INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_pwebsite_passwords_seed.sqlassword, created_at) VALUES (50, 17, 24, 'labber7', 'rIprkW2uWZU0', '2022-06-03 03:14:07' );
+INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (50, 17, 24, 'labber7', 'rIprkW2uWZU0', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (51, 12, 17, 'labber9', '6alSqAZg', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (52, 12, 17, 'labber12', 'pCy8ZRQk', '2022-06-03 03:14:07' );
 INSERT INTO website_passwords (id, user_id, website_url_id, website_username, generated_password, created_at) VALUES (53, 3, 39, 'labber13', 'L0Z843NV7fyw', '2022-06-03 03:14:07' );

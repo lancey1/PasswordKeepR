@@ -1,19 +1,19 @@
-<%- include('./partials/_head') %> 
+<%- include('./partials/_head') %>
   <body>
-    <%- include('./partials/_header') %> 
+    <%- include('./partials/_header') %>
     <main>
     <section id="web-info">
         <article>
             <% if(!locals.webinfo_arr){ %>
                 <p>Nothing here</p>
-            <% } else{ %> 
-            <% for(const key of webinfo_arr) {%> 
-            <%- include('./partials/_webinfo_detail',{webinfo_item:key}) %> 
-            <% }} %> 
-            
+            <% } else{ %>
+            <% for(const key of webinfo_arr) {%>
+            <%- include('./partials/_webinfo_detail',{webinfo_item:key}) %>
+            <% }} %>
+
         </article>
     </section>
     </main>
-    <%- include('./partials/_footer') %> 
+    <%- include('./partials/_footer') %>
   </body>
 </html>

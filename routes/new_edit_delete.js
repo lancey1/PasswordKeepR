@@ -10,6 +10,7 @@ const { render } = require('express/lib/response');
 const router = express.Router();
 const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
+const { alterWebUserPswd } = require('../helper/queries')
 var CryptoJS = require("crypto-js");
 
 router.get('/new', (req, res) => {
@@ -33,12 +34,18 @@ router.post('/new', async (req, res) => {
     }
 })
 
-router.get('/edit/:id', (req, res) => {
-    res.send(req.params.id);
+router.get('/edit/:id' , (req, res) => {
+  // return res.redirect('/home');
 })
 
 router.post('/edit/:id', (req, res) => {
-
+  const newPassword = req.body.newpassword;
+  try {
+    alterWebUserPswd(newPassword);
+    // return res.render('/home');
+  } catch (error) {
+    throw error['message'];
+  }
 })
 
 router.post('/delete/:id', (req, res) => {
@@ -47,3 +54,5 @@ router.post('/delete/:id', (req, res) => {
 
 
 module.exports = router;
+
+

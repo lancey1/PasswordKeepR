@@ -19,7 +19,7 @@ router.get('/home', async (req, res) => {
 router.get('/main/:type', async (req, res) => {
     let userId = res.locals.user['id'];
     try {
-        //! fetch webURLS 
+        //! fetch webURLS
         const result = await fetchWebURLsByType(userId, req.params.type);
         return res.render('list_webURL', { webURL_arr: result, web_type: req.params.type });
     } catch (error) {
@@ -28,7 +28,7 @@ router.get('/main/:type', async (req, res) => {
 })
 
 router.get('/info/:id', async (req, res) => {
-    console.log('in gere')
+    console.log('in here')
     let userId = res.locals.user['id'];
     try {
         const result = await fetchWebDetailsByWebId(userId, req.params.id);

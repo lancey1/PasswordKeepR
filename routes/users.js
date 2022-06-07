@@ -53,8 +53,31 @@ router.post('/signup', async (req, res) => {
   let hashehPassword = await bcrypt.hash(password, 12);
   req.session.email = email;
   try {
+<<<<<<< HEAD
     await insertUser(username, organization, email, hashehPassword, permissionType);
     return res.redirect('/home');
+=======
+    await insertUser(username, organization, email, hashehPassword);
+    // const sgMail = require('@sendgrid/mail');
+    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // const msg = {
+    //   to: email,
+    //   from: 'lanceyu1010@gmail.com', // Sender address ill just use my spam email lol
+    //   subject: 'Welcome to PasswordKeepR',
+    //   text: `Welcome to PasswordKeepR! ${username}`,
+    //   html: `<p>Hello ${username}.
+    //           Welcome to PasswordKeepR </p>`
+    // };
+    // sgMail
+    // .send(msg)
+    // .then(() => {
+    //   console.log('Email sent')
+    // })
+    // .catch((error) => {
+    //   console.log(error.response.body)
+    // });
+    return res.redirect('/main');
+>>>>>>> twillio-api
   } catch (error) {
     throw error['message'];
   }
