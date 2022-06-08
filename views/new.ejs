@@ -1,10 +1,10 @@
-<%- include('./partials/_head') %> 
+<%- include('./partials/_head') %>
   <body>
-    <%- include('./partials/_header') %> 
+    <%- include('./partials/_header') %>
     <main>
-        <form action="/new" method="post">
+        <form id="urlsubmissionform" action="/new" method="post">
           <p class="input_sec">
-            <label for="web_type">Category</label>
+            <label for="web_type">web_type</label>
             <select name="web_type" id="web_type">
                 <option value="entertainment">entertainment</option>
                 <option value="social">social</option>
@@ -18,56 +18,51 @@
             </select>
           </p>
           <p class="input_sec">
-            <label for="website_url">Url</label>
-            <input type="url" name="website_url">
+            <label for="website_url">website_url</label>
+            <input id="website_url" type="url" name="website_url">
+          </p>
+          <p class="input_sec user_email">
+            <label for="user_email">userEmail</label>
+            <input id="user_email" type="text" name="user_email">
           </p>
           <p class="input_sec">
-            <label for="user_email">User Email</label>
-            <input type="text" name="user_email">
-          </p>
-          <hr>
-          <p class="input_sec">
-            <fieldset>
-              <legend>Password requirements</legend>
-                <label for="passwordlength"><i>Password length</i></label>
+            <fieldset id="requirements">
+              <legend>password requirements</legend>
+                <label for="passwordlength">password length</label>
                 <input type="number" name="passwordlength" id="passwordlength" step="1">
-                <section class="password-requirements-container">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="lowercase" name="lowercase">
+                  <input id="lowercase" class="form-check-input" type="checkbox" value="0" name="lowercase">
                   <label class="form-check-label" for="lowercase">
-                    <i>Lowercase</i>
+                    lowercase
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="uppercase" name="uppercase">
+                  <input id="uppercase" class="form-check-input" type="checkbox" value="0" name="uppercase">
                   <label class="form-check-label" for="uppercase">
-                    <i>Uppercase</i>
+                    uppercase
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="number" name="number">
+                  <input id="number" class="form-check-input" type="checkbox" value="0" name="number">
                   <label class="form-check-label" for="number">
-                    <i>Number</i>
+                    number
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="specialchar" name="specialchar">
+                  <input id="specialchar" class="form-check-input" type="checkbox" value="0" name="specialchar">
                   <label class="form-check-label" for="special-chars">
-                    <i>Special-chars</i>
+                    special-chars
                   </label>
                 </div>
-                </section>
             </fieldset>
           </p>
-          <hr>
-
-          <div id="actions">
-            <button type="reset" id="btn-clear-content">Clear</button>
-            <button id="btn-submit-content">Submit</button>
+          <div>
+            <button type="reset">Clear</button>
+            <button id="disabledsubmit" type="submit">Submit</button>
           </div>
-            
+
         </form>
     </main>
-    <%- include('./partials/_footer') %> 
+    <%- include('./partials/_footer') %>
   </body>
 </html>
