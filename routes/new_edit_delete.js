@@ -42,11 +42,9 @@ router.get('/edit/:id', (req, res) => {
 router.post('/edit/:id', async (req, res) => {
   const { newpassword, website_id } = req.body;
   const user_id = res.locals.user['id'];
-  console.log(newpassword);
   const website_password_id = req.params.id;
   //? Encrypt user new password
   var ciphertext = CryptoJS.AES.encrypt(newpassword, process.env.SECRET_KEY).toString();
-  console.log(ciphertext)
   try {
     await alterWebUserPswd(ciphertext, website_password_id, user_id);
     return res.redirect(`/info/${website_id}`);
@@ -60,7 +58,6 @@ router.post('/delete/:id', async (req, res) => {
   try {
     await deleteWebPswdById(req.params.id);
     return res.redirect(`/info/${req.body['website_id']}`);
-    res.send(req.params.id);
   } catch (error) {
     throw error;
   }
