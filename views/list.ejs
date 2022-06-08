@@ -2,6 +2,7 @@
   <body>
     <%- include('./partials/_header') %> 
     <main>
+      <section class="org_webURL_list">
       <ul>
         <% if( !locals.webURL_arr || locals.webURL_arr.length === 0) {%>
           <h2>Nothing here...Maybe <a href="/new" data-linkto="new">create</a> some?</h2>
@@ -11,6 +12,7 @@
           <% } %> 
         <% } %> 
       </ul>
+      </section>
     </main>
     <%- include('./partials/_footer') %> 
   </body>

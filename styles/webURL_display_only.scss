@@ -1,0 +1,45 @@
+section.org_webURL_list {
+  border: 1px;
+  background-color: transparent;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgb(210, 210, 210);
+  padding: 2rem 1rem;
+
+  ul {
+    padding: 0;
+  }
+
+  .list_webURL_container {
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1.5rem;
+    p {
+      margin: 0;
+    }
+  }
+
+  .p_with_svg {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-block-end: 1rem;
+    background-color: whitesmoke;
+    a {
+      display: block;
+      color: rgb(60, 60, 60);
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.webinfo-detail-url {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-block-end: 1rem;
+  a {
+    display: block;
+    color: rgb(60, 60, 60);
+    font-size: 0.9rem;
+  }
+}
