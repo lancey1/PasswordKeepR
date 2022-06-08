@@ -1,0 +1,56 @@
+section.web-urls {
+  border: 1px;
+  background-color: transparent;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgb(210, 210, 210);
+  padding: 1rem;
+
+  a:hover {
+      p{
+          color: rgb(10,10,10);
+      }
+    svg.wiggle {
+      animation: wiggle 1s ease infinite both;
+    }
+    @keyframes wiggle {
+      0% {
+        scale: 2;
+        transform: translateX(0rem);
+      }
+      50% {
+        transform: translateX(0.5rem);
+      }
+      100% {
+        transform: translateX(0rem);
+      }
+    }
+  }
+
+  h2 {
+    margin-block-start: 1rem;
+    margin-block-end: 2rem;
+  }
+  hr {
+    height: 2px;
+    background-color: rgb(210, 210, 210);
+    border: none;
+    margin-block-start: 1.2rem;
+    margin-block-end: 1.2rem;
+  }
+  .webURL-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+
+    p {
+      margin: 0;
+      margin-inline-start: 1rem;
+    }
+
+    svg {
+      margin-inline-end: 1rem;
+    }
+  }
+}
