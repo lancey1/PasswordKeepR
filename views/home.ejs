@@ -5,6 +5,7 @@
     <section class="web-categories">
         <article>
 
+          <% if(locals.isMember) {%>
           <a href="/org">
               <div>
                 <h2 class="webtype-card-type"><%=orgResult.orgName %> </h2>
@@ -14,8 +15,10 @@
               </svg>
           </a> 
             <hr />
-            <% if(!locals.webtype_arr){%>
-              <p>create some</p>
+          <% } %> 
+          
+            <% if(!locals.webtype_arr || locals.webtype_arr.length === 0){%>
+              <p>Nothing here...Maybe <a href="/new" data-linkto="new">create</a> some?</p>
             <% }else{ %>  
             <% for(const key of webtype_arr) { %> 
               <%- include('./partials/_webtype-card',{webtype_item:key})  %> 

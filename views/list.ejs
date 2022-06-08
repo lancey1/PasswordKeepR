@@ -5,7 +5,7 @@
       <section class="org_webURL_list">
       <ul>
         <% if( !locals.webURL_arr || locals.webURL_arr.length === 0) {%>
-          <h2>Nothing here...Maybe <a href="/new" data-linkto="new">create</a> some?</h2>
+          <p>Nothing here...Maybe <a href="/new" data-linkto="new">create</a> some?</p>
         <% } else { %>
           <% for(const item of webURL_arr) { %> 
             <%- include('./partials/_webinfo_displayOnly_card', {webURL_item: item}) %> 

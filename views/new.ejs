@@ -4,7 +4,7 @@
     <main>
         <form action="/new" method="post">
           <p class="input_sec">
-            <label for="web_type">web_type</label>
+            <label for="web_type">Category</label>
             <select name="web_type" id="web_type">
                 <option value="entertainment">entertainment</option>
                 <option value="social">social</option>
@@ -18,47 +18,52 @@
             </select>
           </p>
           <p class="input_sec">
-            <label for="website_url">website_url</label>
+            <label for="website_url">Url</label>
             <input type="url" name="website_url">
           </p>
           <p class="input_sec">
-            <label for="user_email">userEmail</label>
+            <label for="user_email">User Email</label>
             <input type="text" name="user_email">
           </p>
+          <hr>
           <p class="input_sec">
             <fieldset>
-              <legend>password requirements</legend>
-                <label for="passwordlength">password length</label>
+              <legend>Password requirements</legend>
+                <label for="passwordlength"><i>Password length</i></label>
                 <input type="number" name="passwordlength" id="passwordlength" step="1">
+                <section class="password-requirements-container">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="lowercase" name="lowercase">
                   <label class="form-check-label" for="lowercase">
-                    lowercase
+                    <i>Lowercase</i>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="uppercase" name="uppercase">
                   <label class="form-check-label" for="uppercase">
-                    uppercase
+                    <i>Uppercase</i>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="number" name="number">
                   <label class="form-check-label" for="number">
-                    number
+                    <i>Number</i>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="specialchar" name="specialchar">
                   <label class="form-check-label" for="special-chars">
-                    special-chars
+                    <i>Special-chars</i>
                   </label>
                 </div>
+                </section>
             </fieldset>
           </p>
-          <div>
-            <button type="reset">Clear</button>
-            <button>Submit</button>
+          <hr>
+
+          <div id="actions">
+            <button type="reset" id="btn-clear-content">Clear</button>
+            <button id="btn-submit-content">Submit</button>
           </div>
             
         </form>

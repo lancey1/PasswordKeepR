@@ -10,6 +10,7 @@ const checkRequestSessionInfo = async (req, res, next) => {
             if (user) {
                 res.locals.user = user;
                 res.locals.isAdmin = (user.permission === 'admin' ? true : false);
+                res.locals.isMember = (user.permission === 'member' ? true : false);
                 res.locals.isAuth = true;
             }
             console.log(res.locals.isAdmin, ' ', res.locals.isAuth);
