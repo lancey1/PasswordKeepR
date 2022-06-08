@@ -55,6 +55,7 @@ router.get('/info/:id', async (req, res) => {
     try {
         const result = await fetchWebDetailsByWebId(userId, req.params.id);
         // return res.send(result);
+        if (result.length === 0) return res.redirect('/home');
         for (const item of result) {
             let bytes = CryptoJS.AES.decrypt(item['password'], process.env.SECRET_KEY);
             item['password'] = bytes.toString(CryptoJS.enc.Utf8);

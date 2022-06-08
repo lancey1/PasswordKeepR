@@ -329,7 +329,8 @@ const fetchWebURLPswdByOrg = async function (userId) {
     } catch (error) {
         throw error;
     }
-};
+}
+
 const fetchAllWebPswdFromOrg = async function (organization_id) {
     let admin;
     let r;
@@ -342,6 +343,16 @@ const fetchAllWebPswdFromOrg = async function (organization_id) {
     try {
         const result = await fetchWebURLPswdByOrg(admin);
         return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteWebPswdById = async function (website_passwords_id) {
+    try {
+        await pool.query(`
+        DELETE FROM website_passwords 
+        WHERE id = $1`, [website_passwords_id]);
     } catch (error) {
         throw error;
     }
@@ -364,5 +375,6 @@ module.exports = {
     deleteUserPermission,
     ignoreUserPermission,
     fetchAllURLFromOrg,
-    fetchAllWebPswdFromOrg
+    fetchAllWebPswdFromOrg,
+    deleteWebPswdById
 };

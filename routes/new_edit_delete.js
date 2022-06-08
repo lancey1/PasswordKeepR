@@ -10,7 +10,7 @@ const { render } = require('express/lib/response');
 const router = express.Router();
 const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
-const { alterWebUserPswd } = require('../helper/queries')
+const { alterWebUserPswd, deleteWebPswdById } = require('../helper/queries')
 const { fetchWebDetailsByWebId } = require('../helper/fetchWebDetails');
 var CryptoJS = require("crypto-js");
 
@@ -56,8 +56,14 @@ router.post('/edit/:id', async (req, res) => {
 
 })
 
-router.post('/delete/:id', (req, res) => {
-  res.send(req.params.id);
+router.post('/delete/:id', async (req, res) => {
+  try {
+    await deleteWebPswdById(req.params.id);
+    return res.redirect(`/info/${req.body['website_id']}`);
+    res.send(req.params.id);
+  } catch (error) {
+    throw error;
+  }
 })
 
 
