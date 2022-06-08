@@ -1,0 +1,28 @@
+#main-login {
+  max-width: 400px;
+  min-width: 50%;
+  margin: 0 auto;
+  margin-block-start: 6rem;
+  label {
+    margin-block-start: 1rem;
+    margin-block-end: 0.2rem;
+  }
+  button {
+      padding: 0.3rem;
+    border: none;
+    outline: none;
+  }
+  button:hover {
+    animation: btnColorChange 0.3s ease 1 forwards;
+    border-radius: 2px;
+  }
+  @keyframes btnColorChange {
+    from {
+      background-color: transparent;
+    }
+    to {
+      color: white;
+      background-color: green;
+    }
+  }
+}

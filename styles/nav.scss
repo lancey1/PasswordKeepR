@@ -39,22 +39,20 @@ nav {
     list-style: none;
     margin-bottom: 0px;
 
-    svg {
-      margin: 0.5rem;
+    a {
+      padding: 0.3rem;
+      margin: 0.1rem;
     }
 
-    svg:hover {
+    a:hover {
       animation: colorChange 0.3s ease 1 forwards;
       border-radius: 2px;
     }
     @keyframes colorChange {
       from {
-        transform: translateY(0);
-        color: rgb(60, 60, 60);
         background-color:transparent;
       }
       to {
-        transform: translateY(0.2rem);
         color: white;
         background-color: rgb(60, 60, 60);
       }

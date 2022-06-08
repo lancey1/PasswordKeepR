@@ -1,23 +1,26 @@
 <%- include('./partials/_head') %> 
   <body>
     <%- include('./partials/_header') %> 
-    <main>
+    <main id="main-signup">
         <form action="/signup" method="post">
-            <label for="organization">organization</label>
+            <label for="organization">Organization</label>
             <input type="text" name="organization" id="organization" placeholder="separate words by space" value="<%=locals.organization%>">
             
-            <label for="permission_type">signup as admin</label>
+            <div id="checkbox-with-label">
+            <label for="permission_type">As admin</label>
             <input type="checkbox" name="permission_type" id="permission_type">
+            </div>
+            
 
-            <label for="username">username</label>
+            <label for="username">Username</label>
             <input type="text" name="username" id="username" value="<%=locals.username%>">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email" name="email" id="email" value="<%=locals.email%>">
 
-            <label for="password">password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password">
 
-            <label for="confirm_password">confirm_password</label>
+            <label for="confirm_password">Confirm password</label>
             <input type="password" name="confirm_password" id="confirm_password">
             
             <% if(locals.warning) {%> 
@@ -25,7 +28,7 @@
               <p class="err-msg"><%=warning%></p>
             <% } %> 
             <hr>
-            <button>Submit</button>
+            <button>Register</button>
         </form>
     </main>
     <%- include('./partials/_footer') %> 

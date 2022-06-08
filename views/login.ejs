@@ -1,10 +1,10 @@
 <%- include('./partials/_head') %> 
   <body>
     <%- include('./partials/_header') %> 
-    <main>
+    <main id="main-login">
         
         <form action="/login" method="post">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email" name="email" id="email" value="<%= locals.email %>">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
@@ -13,7 +13,7 @@
               <p class="err-msg"><%=warning%></p>
             <% } %> 
             <hr>
-            <button>Submit</button>
+            <button>Login</button>
         </form>
     </main>
     <%- include('./partials/_footer') %> 
