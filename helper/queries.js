@@ -297,14 +297,14 @@ const fetchAllURLFromOrg = async function (organization_id) {
     let r;
     try {
         r = await queryAdminByOrganizationId(organization_id);
-        admin = r['id'];
+        admin = r ? r['id'] : null;
         console.log(admin, '================')
     } catch (error) {
         throw error;
     };
     try {
         const result = await fetchAllURLForUser(admin);
-        result.orgName = r['name'];
+        result.orgName = r? r['name']: null;
         return result;
     } catch (error) {
         throw error;

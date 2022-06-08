@@ -20,8 +20,9 @@ router.get('/org', async (req, res) => {
 })
 
 router.get('/home', async (req, res) => {
-    let userId = res.locals.user['id'];
-    let organization_id = res.locals.user['organization_id'];
+
+    let userId = res.locals.user ? res.locals.user['id'] : null;
+    let organization_id = res.locals.user ? res.locals.user['organization_id'] : null;
     let orgResult;
     try {
         orgResult = await fetchAllURLFromOrg(organization_id);

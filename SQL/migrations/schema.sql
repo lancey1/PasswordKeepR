@@ -20,6 +20,7 @@ CREATE TABLE users (
 CREATE TABLE website_url_details (
   id SERIAL PRIMARY KEY NOT NULL,
   url VARCHAR(255) NOT NULL,
+  user_id INTEGER NOT NULL,
   website_type VARCHAR(52) NOT NULL
 );
 
