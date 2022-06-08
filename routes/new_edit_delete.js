@@ -1,10 +1,3 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const { render } = require('express/lib/response');
 const router = express.Router();
@@ -28,7 +21,7 @@ router.post('/new', async (req, res) => {
   try {
     const result = await storeInstance(website_url, web_type, userId, user_email, ciphertext);
     if (result == 'success') {
-      return res.render('list')
+      return res.redirect('list');
     }
   } catch (error) {
     throw error;

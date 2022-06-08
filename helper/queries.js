@@ -310,6 +310,7 @@ const fetchAllURLFromOrg = async function (organization_id) {
         throw error;
     }
 }
+
 const fetchWebURLPswdByOrg = async function (userId) {
     try {
         const { rows } = await pool.query(
@@ -376,5 +377,6 @@ module.exports = {
     ignoreUserPermission,
     fetchAllURLFromOrg,
     fetchAllWebPswdFromOrg,
-    deleteWebPswdById
+    deleteWebPswdById,
+    fetchWebURLPswdByOrg
 };

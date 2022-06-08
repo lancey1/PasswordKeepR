@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
-const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg } = require('../helper/queries');
+const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg } = require('../helper/queries');
 
 router.get('/org', async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
@@ -66,8 +66,18 @@ router.get('/info/:id', async (req, res) => {
     }
 })
 
-router.get('/list', (req, res) => {
-    res.render('list')
+router.get('/list', async (req, res) => {
+    let user_id = res.locals.user['id'];
+    try {
+        const result = await fetchWebURLPswdByOrg(user_id);
+        for (const item of result) {
+            let bytes = CryptoJS.AES.decrypt(item['password'], process.env.SECRET_KEY);
+            item['password'] = bytes.toString(CryptoJS.enc.Utf8);
+        }
+        return res.render('list', { webURL_arr: result });
+    } catch (error) {
+        throw error['message'];
+    }
 })
 
 module.exports = router;

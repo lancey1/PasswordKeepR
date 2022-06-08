@@ -2,23 +2,15 @@
   <body>
     <%- include('./partials/_header') %> 
     <main>
-      <article>
-        <dl>
-            <dt>webtype</dt>
-            <dd>...from database</dd>
-            <dt>website_url</dt>
-            <dd>...from database</dd>
-            <dt>website_password</dt>
-            <dd>...from database</dd>
-        </dl>
-        <a href="/edit/list_id">EDIT</a>
-        <hr>
-
-        <form action="/delete/list_id" method="post">
-            <button>DELETE</button>
-        </form>
-        
-      </article>
+      <ul>
+        <% if( !locals.webURL_arr || locals.webURL_arr.length === 0) {%>
+          <h2>Nothing here...Maybe <a href="/new" data-linkto="new">create</a> some?</h2>
+        <% } else { %>
+          <% for(const item of webURL_arr) { %> 
+            <%- include('./partials/_webinfo_displayOnly_card', {webURL_item: item}) %> 
+          <% } %> 
+        <% } %> 
+      </ul>
     </main>
     <%- include('./partials/_footer') %> 
   </body>
