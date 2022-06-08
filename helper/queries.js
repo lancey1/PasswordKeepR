@@ -122,6 +122,25 @@ const queryUserInfoByEmail = async function (email) {
     }
 };
 
+const queryWebIdByURLAndUserId = async function (webURL, user_id) {
+    try {
+        const { rows } = await pool.query(
+            `
+        SELECT *
+        FROM website_url_details
+        WHERE url = $1 AND user_id = $2;
+        `,
+            [webURL, user_id]
+        );
+        console.log("In queryWebIdByURLAndUserId result is ", rows);
+        if (rows.length !== 0) {
+            return rows[0]["id"];
+        } else return;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const queryWebIdByURL = async function (websiteURL) {
     try {
         const { rows } = await pool.query(
@@ -141,13 +160,13 @@ const queryWebIdByURL = async function (websiteURL) {
     }
 };
 
-const insertWebURL = async function (websiteURL, webType) {
+const insertWebURL = async function (websiteURL, user_id, webType) {
     try {
         const { rows } = await pool.query(
             `
-        INSERT INTO website_url_details (url, website_type)
-        VALUES ($1, $2) RETURNING *;`,
-            [websiteURL, webType]
+        INSERT INTO website_url_details (url, user_id, website_type)
+        VALUES ($1, $2, $3) RETURNING *;`,
+            [websiteURL, user_id, webType]
         );
         console.log("In insertWebUrl webId is ", rows[0]["id"]);
         return rows[0]["id"];
@@ -304,7 +323,7 @@ const fetchAllURLFromOrg = async function (organization_id) {
     };
     try {
         const result = await fetchAllURLForUser(admin);
-        result.orgName = r? r['name']: null;
+        result.orgName = r ? r['name'] : null;
         return result;
     } catch (error) {
         throw error;
@@ -365,6 +384,7 @@ module.exports = {
     queryUsersByOrganizationId,
     insertUser,
     queryUserInfoByEmail,
+    queryWebIdByURLAndUserId,
     queryWebIdByURL,
     insertWebURL,
     insertWebUserPswd,

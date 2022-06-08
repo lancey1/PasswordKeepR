@@ -6,8 +6,8 @@
         
         <ul>
 
-            <% if(!locals.webURL_arr){%>
-              <p>Oh, Empty</p>
+            <% if(!locals.webURL_arr || locals.webURL_arr.length === 0){%>
+              <p>Admin hasn't created any.</p>
             <% }else{ %>  
             <% for(const key of webURL_arr) { %> 
               <%- include('./partials/_webinfo_displayOnly_card',{webURL_item:key})  %> 
