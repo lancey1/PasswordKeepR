@@ -1,8 +1,10 @@
 <a href="/main/<%= webtype_item['website_type'] %>" class="webtype-card-a">
   <section class="webtype-card">
-    <div>
+    <div class="webtype-card-info">
       <p class="webtype-card-type"><%= webtype_item['website_type']%></p>
-      <p class="webtype-card-count"><%= webtype_item['count']%></p>
+      <div class="webtype-card-count-box">
+        <p class="webtype-card-count"><%= webtype_item['count']%></p>
+      </div>
     </div>
 
     <div>

@@ -1,23 +1,56 @@
 .webtype-card-img {
-  width: 10rem;
-  height: 5rem;
+  width: 20rem;
+  height: 4rem;
+  border-radius: 4px;
   object-fit: cover;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgb(255, 255, 255) 40%,
-    rgb(255, 255, 255) 100%,
-    transparent 100%
-  );
+  margin-inline-end: 1rem;
+  //   -webkit-mask-image: linear-gradient(
+  //     to right,
+  //     transparent 0%,
+  //     rgb(255, 255, 255) 40%,
+  //     rgb(255, 255, 255) 100%,
+  //     transparent 100%
+  //   );
+}
+
+.webtype-card:hover {
+  img {
+    box-shadow: 1px 1px 1px 1px rgb(200, 200, 200);
+  }
+  p.webtype-card-type {
+    color: black;
+  }
+  div p.webtype-card-count {
+    background-color: gray;
+    color: rgb(245, 245, 245);
+  }
 }
 
 .webtype-card {
   display: flex;
   justify-content: space-between;
-}
 
-.webtype-card-count {
-  background-color: gray;
+  .webtype-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p.webtype-card-type {
+      font-size: 1.2rem;
+      margin-inline-start: 1rem;
+      margin-block-end: 0;
+    }
+    .webtype-card-count-box {
+      margin-inline-start: 1rem;
+      p {
+        margin: 0;
+        color: gray;
+        background-color: rgb(245, 245, 245);
+        text-align: center;
+        width: 3rem;
+        border-radius: 1rem;
+      }
+    }
+  }
 }
 
 section.web-categories {
@@ -27,6 +60,41 @@ section.web-categories {
   border-style: solid;
   border-color: rgb(210, 210, 210);
   padding: 1rem;
+
+  [href="/org"] {
+    color: rgb(60, 60, 60);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-start: 1.5rem;
+    svg {
+      width: 2rem;
+      margin-inline-end: 1rem;
+    }
+    h2 {
+      margin: 0;
+      margin-inline-start: 1rem;
+    }
+  }
+  [href="/org"]:hover {
+    svg.wiggle {
+      animation: wiggle 1s ease infinite both;
+    }
+    @keyframes wiggle {
+      0% {
+        scale: 2;
+        transform: translateX(0rem);
+      }
+      50% {
+        transform: translateX(0.5rem);
+      }
+      100% {
+        transform: translateX(0rem);
+      }
+    }
+  }
+
   hr {
     height: 2px;
     background-color: rgb(210, 210, 210);
@@ -34,7 +102,4 @@ section.web-categories {
     margin-block-start: 1.2rem;
     margin-block-end: 1.2rem;
   }
-
-  
-
 }
