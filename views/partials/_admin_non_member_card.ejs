@@ -3,12 +3,13 @@
     <span><%=nonMember.name %></span>
     <span><%=nonMember.email %></span>
   </div>
-  <div>
+  <div class="actions">
     <form action="/manage/ignore/<%=nonMember.id%>" method="post">
-      <button>Ignore</button>
+      <button class="ignore-user-btn">Ignore</button>
     </form>
     <form action="/manage/accept/<%=nonMember.id%>" method="post">
-      <button>Accept</button>
+      <button class="accept-user-btn">Accept</button>
     </form>
   </div>
 </li>
+<hr>

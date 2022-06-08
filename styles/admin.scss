@@ -1,0 +1,74 @@
+#admin-page-main {
+  border: 1px;
+  background-color: transparent;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgb(210, 210, 210);
+  padding: 2rem 1rem;
+
+  h4 {
+    color: rgb(60, 60, 60);
+    margin-block-start: 2rem;
+    margin-block-end: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 1rem;
+  }
+  hr {
+    margin-block: 0.5rem;
+  }
+  #curr-member-list {
+    li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+    }
+
+    button.remove-user-btn:hover {
+      border-radius: 4px;
+      background-color: red;
+      color: white;
+    }
+  }
+  #pending-member-list {
+    li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      margin-inline: 0.2rem;
+      background-color: transparent;
+    }
+
+    button.accept-user-btn:hover {
+      border-radius: 4px;
+      background-color: green;
+      color: white;
+    }
+
+    button.ignore-user-btn:hover {
+      border-radius: 4px;
+      background-color: orange;
+      color: white;
+    }
+
+    div.actions {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
