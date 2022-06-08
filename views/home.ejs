@@ -5,7 +5,7 @@
     <section class="web-categories">
         <article>
 
-          <% if(locals.isMember) {%>
+          <% if(locals.isMember || locals.isAdmin) {%>
           <a href="/org">
               <div>
                 <h2 class="webtype-card-type"><%=orgResult.orgName %> </h2>
