@@ -1,12 +1,11 @@
 $(document).ready(function () {
   $(".copybutton").mousedown(function () {
     let copyText = $(this).val();
-    console.log(copyText);
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText);
+    stdin.write(data);
+    stdin.end();
     // /* Alert the copied text */
-    console.log("Copied the text: " + copyText);
-    alert("Copied the text: " + copyText);
   });
 
   $(".username-pswd-info-password").mouseover(function () {
