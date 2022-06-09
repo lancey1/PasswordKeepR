@@ -29,7 +29,7 @@ section.org_webURL_list {
   }
 
   .copybutton {
-    width: 1.3em; 
+    width: 1.3em;
   }
 
   .copybutton:hover {
@@ -51,6 +51,11 @@ section.org_webURL_list {
       font-size: 0.9rem;
     }
   }
+  .list_webURL_password{
+    background-color: whitesmoke;
+    border:none;
+    }
+
 }
 
 .webinfo-detail-url {
@@ -58,6 +63,7 @@ section.org_webURL_list {
   flex-direction: row;
   justify-content: flex-start;
   margin-block-end: 1rem;
+
   a {
     display: block;
     color: rgb(60, 60, 60);
@@ -72,3 +78,4 @@ section.org_webURL_list {
 .copybutton:active {
   cursor: grabbing;
 }
+

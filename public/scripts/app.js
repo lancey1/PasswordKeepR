@@ -23,6 +23,17 @@ $(document).ready(function () {
       .attr("type", "password");
   });
 
+  $(".list_webURL_password").mouseover(function () {
+    $(this)
+      .attr("type", "text");
+  });
+
+  $(".list_webURL_password").mouseout(function () {
+    $(this)
+      .attr("type", "password");
+  });
+
+
 
   const checkForm = function () {
     $("#lowercase").val($("#lowercase").is(":checked") ? 1 : 0);
