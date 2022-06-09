@@ -35,16 +35,18 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
+  console.log('???')
   const { organization, username, email, password, confirm_password } = req.body;
   let permissionType = req.body.permission_type ? 'admin' : 'user';
   //* Validate user's inputs.
   try {
     let msg = await signupCheck(email, password, confirm_password, organization, permissionType);
+    console.log(msg);
     if (msg) {
       return res.render('signup', { warning: msg, organization: organization, email: email, username: username });
     }
   } catch (error) {
-    throw error['message'];
+    throw "signup post:" + error['message'];
   }
 
   //* Hash user password then store it.
@@ -52,26 +54,25 @@ router.post('/signup', async (req, res) => {
   req.session.email = email;
   try {
     await insertUser(username, organization, email, hashehPassword, permissionType);
-    // //!
-    // const sgMail = require('@sendgrid/mail');
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    // const msg = {
-    //   to: email,
-    //   from: 'lanceyu1010@gmail.com', // Sender address ill just use my spam email lol
-    //   subject: 'Welcome to PasswordKeepR',
-    //   text: `Welcome to PasswordKeepR! ${username}`,
-    //   html: `<p>Hello ${username}.
-    //           Welcome to PasswordKeepR </p>`
-    // };
-    // sgMail
-    // .send(msg)
-    // .then(() => {
-    //   console.log('Email sent')
-    // })
-    // .catch((error) => {
-    //   console.log(error.response.body)
-    // });
-    // //!
+    //!
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+         to: email,
+         from: email,
+         templateId: "d-e9c8e759c12249028517d24ecaaa806a",
+         dynamic_template_data: {
+          name: username
+         }
+      };
+      sgMail.send(msg, (error, result) => {
+         if (error) {
+             console.log(error);
+         } else {
+          console.log('Email sent')
+        }
+      });
+    //!
     return res.redirect('/home');
   } catch (error) {
     throw error['message'];
