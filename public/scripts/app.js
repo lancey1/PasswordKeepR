@@ -40,18 +40,21 @@ $(document).ready(function () {
     const $numbers = Number($("#number").val());
     const $special = Number($("#specialchar").val());
 
-    if ($("#passwordlength").val() <= 6 && $("#passwordlength").val() >= 48 && $("#passwordlength").length === 0) {
-      $("#disabledsubmit").prop("disabled", true);
-    }
-    if ($("#website_url").val().length === 0) {
-      $("#disabledsubmit").prop("disabled", true);
-    }
-    if ($("#user_email").val().length === 0) {
-      $("#disabledsubmit").prop("disabled", true);
-    }
-    if ($lowercase === 0 && $uppercase === 0 && $numbers === 0 && $special === 0) {
-      $("#disabledsubmit").prop("disabled", true);
-      }
+    alert($("#passwordlength").val())
+    
+
+    // if ($("#passwordlength").val() <= 6 && $("#passwordlength").val() >= 48 && $("#passwordlength").val().length == 0) {
+    //   $("#disabledsubmit").prop("disabled", true);
+    // }
+    // if ($("#website_url").val().length === 0) {
+    //   $("#disabledsubmit").prop("disabled", true);
+    // }
+    // if ($("#user_email").val().length === 0) {
+    //   $("#disabledsubmit").prop("disabled", true);
+    // }
+    // if ($lowercase === 0 && $uppercase === 0 && $numbers === 0 && $special === 0) {
+    //   $("#disabledsubmit").prop("disabled", true);
+    //   }
     if (
     (
     $("#passwordlength").val() >= 6 &&
