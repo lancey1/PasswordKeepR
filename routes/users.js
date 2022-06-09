@@ -11,7 +11,6 @@ const bcrypt = require('bcryptjs');
 const { insertUser } = require('../helper/queries');
 const { signupCheck, loginCheck } = require('../helper/user')
 
-
 router.get('/login', (req, res) => {
   res.render('login');
 })
@@ -79,6 +78,12 @@ router.post('/signup', async (req, res) => {
   } catch (error) {
     throw error['message'];
   }
+})
+
+//* Don't delete this get logout
+router.get('/logout', (req, res) => {
+  req.session = null;
+  res.redirect('/')
 })
 
 router.post('/logout', (req, res) => {

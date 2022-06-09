@@ -1,15 +1,21 @@
-.lockImage {
-  float: right;
-  text-align: center;
-  max-width: 45%;
-  margin-bottom: 100px;
-  max-height: 45%
-}
-
 .aboutUs {
   margin-top: 20px;
 }
 
 .article {
-  width: 60%
+  width: 80%;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+#main-feature-list {
+  color: rgb(60, 60, 60);
+  li {
+    font-size: 0.8rem;
+    list-style:disc
+  }
+  width: 80%;
+  margin: 0 auto;
+  
 }

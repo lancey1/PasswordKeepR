@@ -6,6 +6,25 @@
   border-color: rgb(210, 210, 210);
   padding: 2rem 1rem;
 
+  .div-svg-with-span-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .div-svg-with-span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-inline-end: 1rem;
+  }
+
+  h2{
+    color: rgb(60,60,60);
+    text-align: end;
+    margin-block-start: 0.5rem;
+    padding-inline-end: 1rem;
+  }
+
   h4 {
     color: rgb(60, 60, 60);
     margin-block-start: 2rem;
@@ -28,6 +47,7 @@
       justify-content: space-between;
     }
     button {
+      color: rgb(60, 60, 60);
       border: none;
       outline: none;
       background-color: transparent;
@@ -48,6 +68,7 @@
     }
 
     button {
+      color: rgb(60, 60, 60);
       border: none;
       outline: none;
       margin-inline: 0.2rem;

@@ -9,16 +9,12 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieSession = require('cookie-session');
-const pool = require('./lib/db');
 
 const usersRoutes = require("./routes/users");
 const NEDRoutes = require('./routes/new_edit_delete');
 const websitePasswordDetails = require('./routes/view');
 const adminRoutes = require('./routes/admin');
 const res = require("express/lib/response");
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 
 app.use(morgan("dev"));
 //* set up view-engine and parser.
@@ -53,16 +49,11 @@ app.get("/", (req, res) => {
 
 app.use(usersRoutes);
 
-//! protect these routes later
 app.use(NEDRoutes);
 app.use(websitePasswordDetails);
-
-//! protect these routes later
 app.use(adminRoutes);
 
-
-
-app.use((req, res) => {
+app.use(( req, res, next) => {
   res.status(404).render('404');
 })
 

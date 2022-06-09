@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { queryMembersByOrganizationId, queryUsersByOrganizationId, grantUserPermission, deleteUserPermission, ignoreUserPermission } = require('../helper/queries');
-
+const {protectAdminRoutes} = require('../helper/protectRoutes')
 //? Protect admin routes, can only use these routes if a user is admin for that organization
-router.use((req, res, next) => {
-    if (!res.locals.isAdmin) return res.status(401).render('401');
-    next();
-})
+
+router.use(protectAdminRoutes);
 
 router.get('/manage', async (req, res) => {
     let organization_id = res.locals.user['organization_id'];

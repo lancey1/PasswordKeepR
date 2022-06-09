@@ -4,6 +4,11 @@ var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
 const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg, queryUsersCountByOrganizationId } = require('../helper/queries');
 
+router.use((req, res, next) => {
+    if (!res.locals.isAuth) return res.status(401).render('401');
+    next();
+})
+
 router.get('/org', async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
     let orgResult;

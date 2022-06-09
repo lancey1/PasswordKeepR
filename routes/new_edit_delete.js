@@ -5,7 +5,10 @@ const { passwordGenerator } = require('../helper/func');
 const { storeInstance } = require('../helper/create');
 const { alterWebUserPswd, deleteWebPswdById } = require('../helper/queries')
 const { fetchWebDetailsByWebId } = require('../helper/fetchWebDetails');
+const { protectAuthRoutes } = require('../helper/protectRoutes')
 var CryptoJS = require("crypto-js");
+
+router.use(protectAuthRoutes);
 
 router.get('/new', (req, res) => {
   res.render('new')
@@ -56,7 +59,4 @@ router.post('/delete/:id', async (req, res) => {
   }
 })
 
-
 module.exports = router;
-
-

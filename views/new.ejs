@@ -3,8 +3,18 @@
     <%- include('./partials/_header') %>
     <main>
         <form id="urlsubmissionform" action="/new" method="post">
+
           <p class="input_sec">
-            <label for="web_type">Category</label>
+            <label for="website_url">Website Url</label>
+            <input id="website_url" type="url" name="website_url" class="responsive-input" value="http://">
+          </p>
+          <p class="input_sec user_email">
+            <label for="user_email">User email</label>
+            <input id="user_email" type="text" name="user_email" class="responsive-input">
+          </p>
+          <hr>
+                    <p class="input_sec">
+            <label for="web_type">Website Category</label>
             <select name="web_type" id="web_type">
                 <option value="entertainment">entertainment</option>
                 <option value="social">social</option>
@@ -16,14 +26,6 @@
                 <option value="home">home</option>
                 <option value="study">study</option>
             </select>
-          </p>
-          <p class="input_sec">
-            <label for="website_url">Url</label>
-            <input id="website_url" type="url" name="website_url" class="responsive-input">
-          </p>
-          <p class="input_sec user_email">
-            <label for="user_email">User email</label>
-            <input id="user_email" type="text" name="user_email" class="responsive-input">
           </p>
           <hr>
           <p class="input_sec">
@@ -59,7 +61,6 @@
                 </section>
             </fieldset>
           </p>
-
           <hr>
           <div id="actions">
             <button type="reset">Clear</button>
