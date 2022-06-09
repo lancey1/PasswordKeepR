@@ -57,21 +57,21 @@ router.post('/signup', async (req, res) => {
     //!
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-      const msg = {
-         to: email,
-         from: email,
-         templateId: "d-e9c8e759c12249028517d24ecaaa806a",
-         dynamic_template_data: {
-          name: username
-         }
-      };
-      sgMail.send(msg, (error, result) => {
-         if (error) {
-             console.log(error);
-         } else {
-          console.log('Email sent')
-        }
-      });
+    const msg = {
+      to: email,
+      from: "lanceyu1010@gmail.com",
+      templateId: "d-e9c8e759c12249028517d24ecaaa806a",
+      dynamic_template_data: {
+        name: username
+      }
+    };
+    sgMail.send(msg, (error, result) => {
+      if (error) {
+        console.log(error['message']);
+      } else {
+        console.log('Email sent')
+      }
+    });
     //!
     return res.redirect('/home');
   } catch (error) {
