@@ -36,7 +36,6 @@ router.get('/home', protectAuthRoutes, async (req, res) => {
     } catch (error) {
         throw error['message'];
     }
-    console.log('=============>',userCount);
     try {
         let result = await fetchWebTypes(userId);
         if (!result) result = null;

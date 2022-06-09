@@ -144,7 +144,6 @@ const queryWebIdByURLAndUserId = async function (webURL, user_id) {
         `,
             [webURL, user_id]
         );
-        console.log("In queryWebIdByURLAndUserId result is ", rows);
         if (rows.length !== 0) {
             return rows[0]["id"];
         } else return;
@@ -163,7 +162,6 @@ const queryWebIdByURL = async function (websiteURL) {
         `,
             [websiteURL]
         );
-        console.log("In queryWebIdByURL webId ARR is ", rows);
         if (rows.length !== 0) {
             return rows[0]["id"];
         } else return;
@@ -180,7 +178,6 @@ const insertWebURL = async function (websiteURL, user_id, webType) {
         VALUES ($1, $2, $3) RETURNING *;`,
             [websiteURL, user_id, webType]
         );
-        console.log("In insertWebUrl webId is ", rows[0]["id"]);
         return rows[0]["id"];
     } catch (error) {
         throw error;
@@ -329,7 +326,6 @@ const fetchAllURLFromOrg = async function (organization_id) {
     try {
         r = await queryAdminByOrganizationId(organization_id);
         admin = r ? r['id'] : null;
-        console.log(admin, '================')
     } catch (error) {
         throw error;
     };
