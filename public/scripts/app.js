@@ -6,7 +6,7 @@ $(document).ready(function () {
     navigator.clipboard.writeText(copyText);
     // /* Alert the copied text */
     console.log("Copied the text: " + copyText);
-    // alert("Copied the text: " + copyText);
+    alert("Copied the text: " + copyText);
   });
 
   $(".username-pswd-info-password").mouseover(function () {
