@@ -51,13 +51,13 @@ div#actions {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  #btn-clear-content {
+  [type="reset"] {
     flex-grow: 0.15;
     padding: 0.3rem;
     border: none;
     outline: none;
   }
-  #btn-clear-content:hover {
+  [type="reset"]:hover {
     animation: btnClearColorChange 0.3s ease 1 forwards;
     border-radius: 2px;
   }
@@ -72,13 +72,14 @@ div#actions {
     }
   }
 
-  #btn-submit-content {
+  [type="submit"] {
     flex-grow: 0.75;
     padding: 0.3rem;
     border: none;
     outline: none;
+    z-index: -10;
   }
-  #btn-submit-content:hover {
+  [type="submit"]:hover {
     animation: btnSubmitColorChange 0.3s ease 1 forwards;
     border-radius: 2px;
   }
