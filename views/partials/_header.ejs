@@ -7,12 +7,12 @@
     <ul class="header-list">
             <% if(locals.isAuth) {%> 
       <li>
-        <a href="/new">New</a>
+        <a href="/new">Create Url</a>
       </li>
       <% } %> 
         <% if(locals.isAuth) {%> 
       <li>
-        <a href="/list">Urls</a>
+        <a href="/list">Urls list</a>
       </li>
       <% } %> 
       <% if(locals.isAdmin) {%> 
@@ -38,7 +38,7 @@
       <% if(locals.isAuth) {%> 
       <li>
         <form action="/logout" method="post">
-            <button><a>Exit</a></button>
+            <button><a>Logout</a></button>
         </form>
       </li>
       <% } %> 

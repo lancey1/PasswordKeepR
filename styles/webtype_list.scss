@@ -4,13 +4,6 @@
   border-radius: 4px;
   object-fit: cover;
   margin-inline-end: 1rem;
-  //   -webkit-mask-image: linear-gradient(
-  //     to right,
-  //     transparent 0%,
-  //     rgb(255, 255, 255) 40%,
-  //     rgb(255, 255, 255) 100%,
-  //     transparent 100%
-  //   );
 }
 
 .webtype-card:hover {
@@ -61,13 +54,20 @@ section.web-categories {
   border-color: rgb(210, 210, 210);
   padding: 2rem 1rem;
 
-  [href="/org"] {
+  .indicator{
+    cursor:default;
+  }
+
+  [href="/org"], .indicator {
     color: rgb(60, 60, 60);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-block-start: 1.5rem;
+    margin-block-end: 2rem;
+    text-decoration: none;
+
     svg {
       width: 2rem;
       margin-inline-end: 1rem;

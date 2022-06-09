@@ -1,8 +1,9 @@
-<%- include('./partials/_head') %> 
+<%- include('./partials/_head',{title:"401"}) %>
   <body>
     <%- include('./partials/_header') %> 
     <main>
-        YOU ARE NOT AUTHENTICATED, LOG IN FIRST.
+      <p class="err-msg">YOU ARE NOT AUTHENTICATED, LOG IN FIRST.</p>  
+        
     </main>
     <%- include('./partials/_footer') %> 
   </body>

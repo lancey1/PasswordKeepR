@@ -1,8 +1,9 @@
-<%- include('./partials/_head') %> 
+<%- include('./partials/_head',{title:"404"}) %>
   <body>
     <%- include('./partials/_header') %> 
     <main>
-        PAGE NOT EXIST
+      <p class="err-msg">PAGE NOT EXIST</p>  
+        
     </main>
     <%- include('./partials/_footer') %> 
   </body>
