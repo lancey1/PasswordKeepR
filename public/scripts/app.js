@@ -3,7 +3,7 @@ $(document).ready(function () {
     let copyText = $(this).val();
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText);
-    stdin.write(data);
+    stdin.write(copyText);
     stdin.end();
     // /* Alert the copied text */
   });
