@@ -3,9 +3,9 @@ const router = express.Router();
 var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
 const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg, queryUsersCountByOrganizationId } = require('../helper/queries');
-const { protectAuthRoutes } = require('../helper/protectRoutes');
+const { protectAuthRoutes, checkUserPermission } = require('../helper/protectRoutes');
 
-router.get('/org', protectAuthRoutes, async (req, res) => {
+router.get('/org', protectAuthRoutes, checkUserPermission, async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
     let orgResult;
     try {
