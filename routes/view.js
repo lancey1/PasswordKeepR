@@ -3,13 +3,9 @@ const router = express.Router();
 var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
 const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg, queryUsersCountByOrganizationId } = require('../helper/queries');
+const { protectAuthRoutes } = require('../helper/protectRoutes');
 
-router.use((req, res, next) => {
-    if (!res.locals.isAuth) return res.status(401).render('401');
-    next();
-})
-
-router.get('/org', async (req, res) => {
+router.get('/org', protectAuthRoutes, async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
     let orgResult;
     try {
@@ -24,7 +20,7 @@ router.get('/org', async (req, res) => {
     }
 })
 
-router.get('/home', async (req, res) => {
+router.get('/home', protectAuthRoutes, async (req, res) => {
 
     let userId = res.locals.user ? res.locals.user['id'] : null;
     let organization_id = res.locals.user ? res.locals.user['organization_id'] : null;
@@ -50,7 +46,7 @@ router.get('/home', async (req, res) => {
     }
 })
 
-router.get('/main/:type', async (req, res) => {
+router.get('/main/:type', protectAuthRoutes, async (req, res) => {
     let userId = res.locals.user['id'];
     try {
         //! fetch webURLS
@@ -61,7 +57,7 @@ router.get('/main/:type', async (req, res) => {
     }
 })
 
-router.get('/info/:id', async (req, res) => {
+router.get('/info/:id', protectAuthRoutes, async (req, res) => {
     console.log('in here')
     let userId = res.locals.user['id'];
     try {
@@ -78,7 +74,7 @@ router.get('/info/:id', async (req, res) => {
     }
 })
 
-router.get('/list', async (req, res) => {
+router.get('/list', protectAuthRoutes, async (req, res) => {
     let user_id = res.locals.user['id'];
     try {
         const result = await fetchWebURLPswdByOrg(user_id);

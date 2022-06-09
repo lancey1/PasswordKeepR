@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { queryMembersByOrganizationId, queryUsersByOrganizationId, grantUserPermission, deleteUserPermission, ignoreUserPermission } = require('../helper/queries');
 const {protectAdminRoutes} = require('../helper/protectRoutes')
-//? Protect admin routes, can only use these routes if a user is admin for that organization
 
-router.use(protectAdminRoutes);
-
-router.get('/manage', async (req, res) => {
+router.get('/manage', protectAdminRoutes, async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
     var members_arr;
     var nonMembers_arr;
@@ -24,7 +21,7 @@ router.get('/manage', async (req, res) => {
     return res.render('admin', { members: members_arr, nonMembers: nonMembers_arr });
 })
 
-router.post('/manage/accept/:userId', async (req, res) => {
+router.post('/manage/accept/:userId', protectAdminRoutes, async (req, res) => {
     try {
         await grantUserPermission(req.params.userId);
         return res.redirect('/manage');
@@ -33,7 +30,7 @@ router.post('/manage/accept/:userId', async (req, res) => {
     }
 })
 
-router.post('/manage/ignore/:userId', async (req, res) => {
+router.post('/manage/ignore/:userId', protectAdminRoutes,async (req, res) => {
     try {
         await ignoreUserPermission(req.params.userId);
         return res.redirect('/manage');
@@ -42,7 +39,7 @@ router.post('/manage/ignore/:userId', async (req, res) => {
     }
 })
 
-router.post('/manage/kick/:userId', async (req, res) => {
+router.post('/manage/kick/:userId', protectAdminRoutes,async (req, res) => {
     try {
         await deleteUserPermission(req.params.userId);
         return res.redirect('/manage');

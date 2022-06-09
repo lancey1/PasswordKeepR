@@ -35,18 +35,16 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-  console.log('???')
   const { organization, username, email, password, confirm_password } = req.body;
   let permissionType = req.body.permission_type ? 'admin' : 'user';
   //* Validate user's inputs.
   try {
     let msg = await signupCheck(email, password, confirm_password, organization, permissionType);
-    console.log(msg);
     if (msg) {
       return res.render('signup', { warning: msg, organization: organization, email: email, username: username });
     }
   } catch (error) {
-    throw "signup post:" + error['message'];
+    throw error['message'];
   }
 
   //* Hash user password then store it.
