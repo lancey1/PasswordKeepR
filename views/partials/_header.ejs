@@ -18,6 +18,11 @@
       <% if(locals.isAdmin) {%> 
       <li>
         <a href="/manage">Members</a>
+        <% if(locals.userCount>0) { %> 
+          <div id="pending-user-count">
+            <i ><%= userCount %></i>
+          </div>
+        <% } %> 
       </li>
       <% } %> 
       <% if(!locals.isAuth) {%> 
