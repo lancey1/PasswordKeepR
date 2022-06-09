@@ -59,6 +59,12 @@ section.org_webURL_list {
   justify-content: flex-start;
   margin-block-end: 1rem;
 
+  img {
+    width: 1.1rem;
+    object-fit: contain;
+    margin-inline-end: 0.6rem;
+  }
+
   a {
     display: block;
     color: rgb(60, 60, 60);
