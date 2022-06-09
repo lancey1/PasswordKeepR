@@ -48,9 +48,12 @@ section.web-urls {
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    p {
+    div {
       margin: 0;
       margin-inline-start: 1rem;
+      display: flex;
+      align-items: center;
+      color:rgb(60,60,60);
       img{
         width: 1.1rem;
         margin-inline-end: 1rem;
