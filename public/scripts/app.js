@@ -40,7 +40,8 @@ $(document).ready(function () {
     const $numbers = Number($("#number").val());
     const $special = Number($("#specialchar").val());
 
-    if ($("#passwordlength").val() <= 6 && $("#passwordlength").val() >= 48 && $("#passwordlength").length === 0) {
+
+    if ($("#passwordlength").val() <= 6 || $("#passwordlength").val() >= 48 || $("#passwordlength").val().length === 0) {
       $("#disabledsubmit").prop("disabled", true);
     }
     if ($("#website_url").val().length === 0) {
@@ -56,6 +57,7 @@ $(document).ready(function () {
     (
     $("#passwordlength").val() >= 6 &&
     $("#passwordlength").val() <= 48 &&
+    $("#passwordlength").val().length >= 1 &&
     $("#website_url").val().length > 0 &&
     $("#user_email").val().length > 0
     ) &&
