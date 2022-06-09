@@ -51,11 +51,6 @@ section.org_webURL_list {
       font-size: 0.9rem;
     }
   }
-  .list_webURL_password{
-    background-color: whitesmoke;
-    border:none;
-    }
-
 }
 
 .webinfo-detail-url {
@@ -79,3 +74,8 @@ section.org_webURL_list {
   cursor: grabbing;
 }
 
+.list_webURL_password{
+  background-color: whitesmoke;
+  border:none;
+  padding:0;
+  }
