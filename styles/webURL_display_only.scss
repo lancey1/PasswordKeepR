@@ -18,12 +18,33 @@ section.org_webURL_list {
     }
   }
 
+  .div-with-svg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: 1rem;
+    background-color: whitesmoke;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .copybutton {
+    width: 1.3em; 
+  }
+
+  .copybutton:hover {
+    color: green;
+  }
+
+  .copybutton:active {
+    color: green;
+  }
+
   .p_with_svg {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin-block-end: 1rem;
-    background-color: whitesmoke;
+
     a {
       display: block;
       color: rgb(60, 60, 60);
@@ -42,4 +63,12 @@ section.org_webURL_list {
     color: rgb(60, 60, 60);
     font-size: 0.9rem;
   }
+}
+
+.copybutton {
+  cursor: grab;
+}
+
+.copybutton:active {
+  cursor: grabbing;
 }
