@@ -59,6 +59,18 @@ const queryUsersByOrganizationId = async function (organizationId) {
     }
 }
 
+const queryUsersCountByOrganizationId = async function (organizationId) {
+    try {
+        const { rows } = await pool.query(`
+        SELECT count(*) 
+        FROM users
+        WHERE permission = 'user' AND organization_id = $1;`, [organizationId]);
+        return rows[0]['count'];
+    } catch (error) {
+        throw error;
+    }
+}
+
 const insertUser = async function (
     username,
     organization,
@@ -382,6 +394,7 @@ module.exports = {
     queryAdminByOrganization,
     queryMembersByOrganizationId,
     queryUsersByOrganizationId,
+    queryUsersCountByOrganizationId,
     insertUser,
     queryUserInfoByEmail,
     queryWebIdByURLAndUserId,

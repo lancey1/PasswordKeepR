@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var CryptoJS = require("crypto-js");
 const { fetchWebTypes, fetchWebDetailsByWebId, fetchWebURLsByType } = require('../helper/fetchWebDetails');
-const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg } = require('../helper/queries');
+const { fetchAllURLFromOrg, fetchAllWebPswdFromOrg, fetchWebURLPswdByOrg, queryUsersCountByOrganizationId } = require('../helper/queries');
 
 router.get('/org', async (req, res) => {
     let organization_id = res.locals.user['organization_id'];
@@ -24,16 +24,22 @@ router.get('/home', async (req, res) => {
     let userId = res.locals.user ? res.locals.user['id'] : null;
     let organization_id = res.locals.user ? res.locals.user['organization_id'] : null;
     let orgResult;
+    let userCount;
     try {
         orgResult = await fetchAllURLFromOrg(organization_id);
     } catch (error) {
         throw error;
     }
-
+    try {
+        userCount = await queryUsersCountByOrganizationId(organization_id);
+    } catch (error) {
+        throw error['message'];
+    }
+    console.log('=============>',userCount);
     try {
         let result = await fetchWebTypes(userId);
         if (!result) result = null;
-        return res.render('home', { webtype_arr: result, orgResult: orgResult });
+        return res.render('home', { webtype_arr: result, orgResult: orgResult, userCount: userCount });
     } catch (error) {
         throw error;
     }
