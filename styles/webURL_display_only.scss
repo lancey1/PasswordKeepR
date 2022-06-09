@@ -25,18 +25,18 @@ section.org_webURL_list {
     align-items: center;
     margin-block-end: 1rem;
     background-color: whitesmoke;
-    padding: 0.1rem 0.3rem;
+    padding: 0.2rem 1rem;
   }
 
-  .copybutton {
+  .copysvg {
     width: 1.3em;
   }
 
-  .copybutton:hover {
+  .copysvg:hover {
     color: green;
   }
 
-  .copybutton:active {
+  .copysvg:active {
     color: green;
   }
 
@@ -67,18 +67,16 @@ section.org_webURL_list {
 }
 
 .copybutton {
+  background-color: transparent;
   cursor: grab;
-  border:none;
-  background-color: whitesmoke;
-
+  border: none;
 }
 
 .copybutton:active {
   cursor: grabbing;
 }
 
-.list_webURL_password{
-  background-color: whitesmoke;
-  border:none;
-  padding:0;
-  }
+input.list_webURL_password {
+  background-color: transparent;
+  border: none;
+}
