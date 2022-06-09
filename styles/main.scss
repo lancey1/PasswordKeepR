@@ -5,14 +5,18 @@
 .article {
   width: 80%;
   margin: 0 auto;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: justify;
+  h6{
+    margin-block-start: 4rem;
+  }
 }
 
 #main-feature-list {
+
   color: rgb(60, 60, 60);
   li {
-    font-size: 0.8rem;
+    font-size: 1rem;
     list-style:disc
   }
   width: 80%;
