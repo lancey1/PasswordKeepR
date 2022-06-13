@@ -8,11 +8,6 @@
             <label for="website_url">Website Url</label>
             <input id="website_url" type="url" name="website_url" class="responsive-input" value="http://">
           </p>
-          <p class="input_sec user_email">
-            <label for="user_email">User email</label>
-            <input id="user_email" type="text" name="user_email" class="responsive-input">
-          </p>
-          <hr>
                     <p class="input_sec">
             <label for="web_type">Website Category</label>
             <select name="web_type" id="web_type">
@@ -28,7 +23,23 @@
             </select>
           </p>
           <hr>
-          <p class="input_sec">
+          
+          <p class="input_sec user_email">
+            <label for="user_email">User email</label>
+            <input id="user_email" type="text" name="user_email" class="responsive-input">
+          </p>
+          <p class="input_sec user_password" id="input-sec-user-password">
+            <label for="user_password">User password</label>
+            <input id="user_password" type="password" name="user_password">
+          </p>
+          <hr>
+
+          <p id="user-password-choice">
+            <input id="create-password" class="form-check-input" type="checkbox" value="0" name="createpassword">
+            <label for="create-password">Need us generates password for you?</label>
+          </p>
+
+      
             <fieldset id="requirements">
               <legend>Password requirements</legend>
                 <label for="passwordlength"><i>Password length (>6)</i></label>
@@ -60,11 +71,12 @@
                 </div>
                 </section>
             </fieldset>
-          </p>
+          
           <hr>
+
           <div id="actions">
             <button type="reset">Clear</button>
-            <button id="disabledsubmit" type="submit" disabled>Submit</button>
+            <button id="disabledsubmit" type="submit">Submit</button>
           </div>
 
         </form>

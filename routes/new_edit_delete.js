@@ -11,9 +11,15 @@ router.get('/new', protectAuthRoutes, (req, res) => {
 })
 
 router.post('/new', protectAuthRoutes, async (req, res) => {
-  let { web_type, website_url, user_email, passwordlength, lowercase, uppercase, specialchar, number } = req.body;
+  let { web_type, website_url, user_email, user_password, passwordlength, lowercase, uppercase, specialchar, number, createpassword } = req.body;
   let userId = res.locals.user.id;
-  let password = passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
+  let password;
+
+  if (createpassword === undefined ) {
+    password = user_password;
+  } else {
+    password = passwordGenerator(passwordlength, uppercase, lowercase, number, specialchar);
+  }
 
   var ciphertext = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString();
 
@@ -31,7 +37,7 @@ router.get('/edit/:id', protectAuthRoutes, (req, res) => {
   // return res.redirect('/home');
 })
 
-router.post('/edit/:id', protectAuthRoutes,async (req, res) => {
+router.post('/edit/:id', protectAuthRoutes, async (req, res) => {
   const { newpassword, website_id } = req.body;
   const user_id = res.locals.user['id'];
   const website_password_id = req.params.id;

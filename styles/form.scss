@@ -30,6 +30,11 @@
       color: rgb(60, 60, 60);
       margin-block-end: 0.2rem;
     }
+    legend{
+      margin-block-start: 1rem;
+      text-align: right;
+      text-decoration: underline;
+    }
     .form-check {
       display: flex;
       flex-direction: row;
@@ -81,7 +86,6 @@ div#actions {
     padding: 0.3rem;
     border: none;
     outline: none;
-    z-index: -10;
   }
   [type="submit"]:hover {
     animation: btnSubmitColorChange 0.3s ease 1 forwards;
@@ -97,4 +101,20 @@ div#actions {
       background-color: green;
     }
   }
+}
+
+#user-password-choice{
+  margin: 0 auto;
+}
+
+#create-password{
+  margin-inline-end: 0.2rem;
+}
+
+#password-requirements{
+  display: none;
+}
+
+#requirements{
+  display: none;
 }
