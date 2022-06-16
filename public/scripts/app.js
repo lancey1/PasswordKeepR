@@ -99,4 +99,29 @@ $(document).ready(function () {
   $(".form-check-input").click(checkForm);
   $(".responsive-input").keyup(checkForm);
 
+  $(".edit-btn").click(function (event) {
+    if ($(this).parent().parent().parent().siblings("div.confirm-edit").css('display') === 'flex') {
+      $(this).parent().parent().parent().siblings("div.confirm-edit").css('display', 'none');
+      return;
+    }
+    event.preventDefault();
+    console.log($(this));
+    $(this).parent().parent().parent().siblings("div.confirm-edit").css('display', 'flex');
+  })
+
+  $(".delete-btn").click(function (event) {
+    event.preventDefault();
+    $(this).parent().parent().parent().siblings("div.confirm-delete").css('display', 'flex');
+  })
+
+  $("[data-btntype=cancel]").click(function () {
+    $(this).parent().parent().css('display', 'none');
+  })
+
+  $("[data-btntype=confirm-edit]").click(function () {
+    console.log('in here');
+    $(this).parent().parent().siblings('div.info-container').
+      children('div.actions').children('form.edit-form').children('button.edit-btn').click();
+  })
+
 });

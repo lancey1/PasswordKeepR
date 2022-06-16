@@ -1,9 +1,17 @@
 <section class="webinfo-detail">
-  
   <div class="confirm-delete">
     <p>You sure you want to delete?</p>
-    <form action="">
-      <button type="button">No</button>
+    <form
+      action="/delete/<%=webinfo_item['website_password_id']%>"
+      class="delete-form"
+      method="post"
+    >
+      <input
+        type="hidden"
+        name="website_id"
+        value="<%=webinfo_item['website_id']%>"
+      />
+      <button type="button" data-btntype="cancel">No</button>
       <button>Yes</button>
     </form>
   </div>
@@ -11,8 +19,8 @@
   <div class="confirm-edit">
     <p>You are about to update your password?</p>
     <form action="">
-      <button type="button">Cancel</button>
-      <button>Confirm</button>
+      <button type="button" data-btntype="cancel">Cancel</button>
+      <button type="button" data-btntype="confirm-edit">Confirm</button>
     </form>
   </div>
 

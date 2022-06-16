@@ -5,13 +5,79 @@
   border-style: solid;
   border-color: rgb(210, 210, 210);
   padding: 1rem;
+  position: relative;
 
-  .confirm-delete{
+  .confirm-delete {
+    
+    text-align: center;
+    padding: 1rem;
+    background-color: rgb(169, 169, 169);
+    width: 100%;
+    height:100%;
+    position: absolute;
+    top: calc(50% - (100% / 2));
+    left: calc(50% - (100% / 2));
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    p{
+      color: snow;
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+    form{
+      width: 60%;
+      margin: 0 auto;
+    }
+    button{
+      margin: 0.2rem 0;
+      border-style: none;
+      padding: 0.1rem;
+      border-radius: 3px;
+      color: rgb(60, 60, 60);
+      transition: 0.3s;
+    }
+    button:hover{
+      box-shadow: 0 0 2px 2px rgb(90, 90, 90);
+      color: rgb(30, 30, 30);
+    }
   }
 
-  .confirm-edit{
+  .confirm-edit {
+   text-align: center;
+    padding: 1rem;
+    background-color: rgb(169, 169, 169);
+    width: 100%;
+    height:100%;
+    position: absolute;
+    top: calc(50% - (100% / 2));
+    left: calc(50% - (100% / 2));
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    p{
+      color: snow;
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+    form{
+      width: 60%;
+      margin: 0 auto;
+    }
+    button{
+      margin: 0.2rem 0;
+      border-style: none;
+      padding: 0.1rem;
+      border-radius: 3px;
+      color: rgb(60, 60, 60);
+      transition: 0.3s;
+    }
+    button:hover{
+      box-shadow: 0 0 2px 2px rgb(90, 90, 90);
+      color: rgb(30, 30, 30);
+    }
   }
 
   .username-pswd-info-username {
@@ -69,7 +135,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-        background-color: rgb(245, 245, 245);
+      background-color: rgb(245, 245, 245);
       form.edit-form {
         display: flex;
         flex-direction: row;
@@ -89,7 +155,7 @@
           width: 1.5rem;
         }
         svg:hover {
-          color: orange
+          color: orange;
         }
       }
 
@@ -101,7 +167,7 @@
         svg {
           width: 1.5rem;
         }
-                svg:hover {
+        svg:hover {
           color: rgb(200, 0, 0);
         }
       }
