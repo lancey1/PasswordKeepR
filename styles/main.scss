@@ -6,20 +6,29 @@
   width: 80%;
   margin: 0 auto;
   font-size: 1rem;
-  text-align: justify;
-  h6{
+  
+  text-align: center;
+  h6 {
     margin-block-start: 4rem;
+    text-align: center;
   }
 }
 
 #main-feature-list {
-
+  padding: 0;
+  h6 {
+    text-align: center;
+    margin-block-start: 2rem;
+  }
   color: rgb(60, 60, 60);
   li {
+    padding: 0;
+    margin: 0;
     font-size: 1rem;
-    list-style:disc
+    list-style: none;
+    text-align: center;
   }
+
   width: 80%;
   margin: 0 auto;
-  
 }
