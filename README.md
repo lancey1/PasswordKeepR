@@ -4,11 +4,11 @@ PasswordKeepR
 A storage system for passwords for single users and organzations. An organization has many different accounts which need to be shared between users. This app will let an authorized user access all the passwords of the organization.
 
 ## Features
-*User can register/login and be assigned to an organization
-*User can add a new username and password for a specific website
-*User can generate passwords based on the criteria specified (password length, contains lowercase, contairs uppercase, contains numbers, etc)
-*User can edit and change their password any time
-*User has a convinient copy to clipboard button so they dont have to select the password
+* User can register/login and be assigned to an organization
+* User can add a new username and password for a specific website
+* User can generate passwords based on the criteria specified (password length, contains lowercase, contairs uppercase, contains numbers, etc)
+* User can edit and change their password any time
+* User has a convinient copy to clipboard button so they dont have to select the password
 
 
 ## Final Product
